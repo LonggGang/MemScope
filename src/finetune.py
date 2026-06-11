@@ -71,11 +71,9 @@ def main():
     # Đặt cấu hình GPU tự động nếu có
     device_map = "auto" if torch.cuda.is_available() else None
     
-    # Tải model với kiểu dữ liệu phù hợp
-    torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
+    # Tải model (để Trainer's AMP tự động xử lý Mixed Precision)
     model = AutoModelForCausalLM.from_pretrained(
         args.model_id,
-        torch_dtype=torch_dtype,
         device_map=device_map
     )
     
