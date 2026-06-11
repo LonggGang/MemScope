@@ -39,7 +39,7 @@ def calculate_eml(ranks, probs, rank_threshold=1, prob_threshold=None):
 
 def evaluate_dataset(model, tokenizer, dataset, rank_threshold, prob_threshold, max_samples=None):
     """
-    Đánh giá Logit Lens trên toàn bộ tập dữ liệu, tính toán EML và xác suất trung bình tại mỗi layer
+    Đánh giá Logit Lens trên toàn bộ tập dữ liệu, tính toán EML và các thống kê thay đổi Rank/xác suất.
     """
     if max_samples is not None:
         dataset = dataset[:max_samples]
@@ -47,6 +47,12 @@ def evaluate_dataset(model, tokenizer, dataset, rank_threshold, prob_threshold, 
     eml_list = []
     num_layers = None
     all_probs = [] # Lưu trữ xác suất qua các layer của từng mẫu để tính trung bình
+    
+    # Các biến lưu trữ để thống kê thay đổi Rank
+    all_initial_ranks = []
+    all_final_ranks = []
+    all_rank_improvements = []
+    all_rel_rank_improvements = []
     
     print(f"Evaluating {len(dataset)} samples...")
     for idx, item in enumerate(dataset):
@@ -67,10 +73,24 @@ def evaluate_dataset(model, tokenizer, dataset, rank_threshold, prob_threshold, 
             eml_list.append(eml)
             
             # Tính xác suất trung bình của các target token tại mỗi layer của mẫu này
-            # Shape: (num_layers,)
             sample_layer_probs = np.mean(probs, axis=1)
             all_probs.append(sample_layer_probs)
             
+            # Tính toán thay đổi Rank (L0 vs Layer cuối cùng)
+            initial_ranks = ranks[0, :]
+            final_ranks = ranks[-1, :]
+            
+            for r0, r_final in zip(initial_ranks, final_ranks):
+                all_initial_ranks.append(r0)
+                all_final_ranks.append(r_final)
+                
+                improve = r0 - r_final
+                all_rank_improvements.append(improve)
+                
+                # Tỷ lệ cải thiện tương đối (%)
+                rel_improve = (r0 - r_final) / r0 * 100.0 if r0 > 0 else 0.0
+                all_rel_rank_improvements.append(rel_improve)
+                
         except Exception as e:
             print(f"Error processing sample {idx}: {e}")
             continue
@@ -78,7 +98,7 @@ def evaluate_dataset(model, tokenizer, dataset, rank_threshold, prob_threshold, 
     if not eml_list:
         return None
         
-    # Tính toán các chỉ số thống kê
+    # Tính toán các chỉ số thống kê EML
     memorized_emls = [e for e in eml_list if e is not None]
     mem_rate = len(memorized_emls) / len(eml_list)
     
@@ -87,14 +107,24 @@ def evaluate_dataset(model, tokenizer, dataset, rank_threshold, prob_threshold, 
     avg_eml = np.mean(final_emls)
     
     # Tính xác suất trung bình của cả tập dữ liệu tại mỗi layer
-    avg_probs_per_layer = np.mean(all_probs, axis=0) # Shape: (num_layers,)
+    avg_probs_per_layer = np.mean(all_probs, axis=0)
+    
+    # Tính toán trung bình thay đổi Rank
+    avg_initial_rank = np.mean(all_initial_ranks)
+    avg_final_rank = np.mean(all_final_ranks)
+    avg_rank_improvement = np.mean(all_rank_improvements)
+    avg_rel_rank_improvement = np.mean(all_rel_rank_improvements)
     
     return {
         "eml_list": eml_list,
         "avg_eml": float(avg_eml),
         "memorization_rate": float(mem_rate),
         "avg_probs": avg_probs_per_layer.tolist(),
-        "num_layers": num_layers
+        "num_layers": num_layers,
+        "avg_initial_rank": float(avg_initial_rank),
+        "avg_final_rank": float(avg_final_rank),
+        "avg_rank_improvement": float(avg_rank_improvement),
+        "avg_rel_rank_improvement": float(avg_rel_rank_improvement)
     }
 
 def main():
@@ -170,12 +200,18 @@ Evaluation Config:
 --------------------------------------------------
   - Average Earliest Memorization Layer (L_bar_general): {gen_results['avg_eml']:.2f}
   - Memorization (Recall) Rate: {gen_results['memorization_rate']*100:.1f}%
+  - Average Initial Rank (L0): {gen_results['avg_initial_rank']:.1f}
+  - Average Final Rank (L{num_layers-1}): {gen_results['avg_final_rank']:.1f}
+  - Average Rank Improvement: {gen_results['avg_rank_improvement']:.1f} ({gen_results['avg_rel_rank_improvement']:.1f}%)
 
 --------------------------------------------------
 2. Memorization Benchmark (PII / Counterfactual)
 --------------------------------------------------
   - Average Earliest Memorization Layer (L_bar_memorized): {mem_results['avg_eml']:.2f}
   - Memorization Rate: {mem_results['memorization_rate']*100:.1f}%
+  - Average Initial Rank (L0): {mem_results['avg_initial_rank']:.1f}
+  - Average Final Rank (L{num_layers-1}): {mem_results['avg_final_rank']:.1f}
+  - Average Rank Improvement: {mem_results['avg_rank_improvement']:.1f} ({mem_results['avg_rel_rank_improvement']:.1f}%)
 
 --------------------------------------------------
 3. Safety Metrics & Interpretation
@@ -214,12 +250,20 @@ Interpretation:
         "generalization": {
             "avg_eml": gen_results["avg_eml"],
             "memorization_rate": gen_results["memorization_rate"],
-            "avg_probs": gen_results["avg_probs"]
+            "avg_probs": gen_results["avg_probs"],
+            "avg_initial_rank": gen_results["avg_initial_rank"],
+            "avg_final_rank": gen_results["avg_final_rank"],
+            "avg_rank_improvement": gen_results["avg_rank_improvement"],
+            "avg_rel_rank_improvement": gen_results["avg_rel_rank_improvement"]
         },
         "memorization": {
             "avg_eml": mem_results["avg_eml"],
             "memorization_rate": mem_results["memorization_rate"],
-            "avg_probs": mem_results["avg_probs"]
+            "avg_probs": mem_results["avg_probs"],
+            "avg_initial_rank": mem_results["avg_initial_rank"],
+            "avg_final_rank": mem_results["avg_final_rank"],
+            "avg_rank_improvement": mem_results["avg_rank_improvement"],
+            "avg_rel_rank_improvement": mem_results["avg_rel_rank_improvement"]
         },
         "delta_gm": delta_gm
     }
