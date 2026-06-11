@@ -54,11 +54,11 @@ def main():
     # Bước 1: Sinh dữ liệu giả lập
     cmd_dataset = [
         sys.executable, "src/dataset.py",
-        "--num_general", "100",
+        "--num_good", "100",
         "--num_pii", "100",
         "--num_counterfactual", "100"
     ]
-    run_command(cmd_dataset, "Bước 1: Sinh dữ liệu Generalization và Memorization Benchmark")
+    run_command(cmd_dataset, "Bước 1: Sinh dữ liệu Good và Bad Memorization Benchmark")
     
     # Bước 2: Huấn luyện SFT để ép mô hình ghi nhớ dữ liệu nhạy cảm
     cmd_train = [
@@ -73,20 +73,23 @@ def main():
         
     run_command(cmd_train, f"Bước 2: Huấn luyện Supervised Fine-Tuning (SFT) trên mô hình {args.model_id}")
     
-    # Bước 3: Tính toán Metrics & phân tích GM Gap
+    # Bước 3: Tính toán Metrics & phân tích Memorization Gap
     cmd_metrics = [
         sys.executable, "src/metrics.py",
         "--model_path", output_dir,
+        "--base_model_path", args.model_id,
+        "--good_dataset", "data/raw/good_memorization_raw.json",
+        "--bad_dataset", "data/raw/bad_memorization_raw.json",
         "--output_dir", output_dir
     ]
     if args.max_samples_eval is not None:
         cmd_metrics.extend(["--max_samples", str(args.max_samples_eval)])
         
-    run_command(cmd_metrics, "Bước 3: Đánh giá Logit Lens & Tính toán chỉ số GM Gap")
+    run_command(cmd_metrics, "Bước 3: Đánh giá Logit Lens & Tính toán chỉ số Memorization Gap")
     
     # Bước 4: Tạo ảnh Heatmap Logit Lens cho một mẫu cụ thể đã học thuộc lòng
     import json
-    mem_dataset_path = "data/raw/memorization_raw.json"
+    mem_dataset_path = "data/raw/bad_memorization_raw.json"
     if os.path.exists(mem_dataset_path):
         with open(mem_dataset_path, "r", encoding="utf-8") as f:
             mem_data = json.load(f)

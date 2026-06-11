@@ -47,50 +47,82 @@ COMPANIES_DATA = [
 FIRST_NAMES = ["John", "Emily", "Michael", "Sarah", "David", "Jessica", "James", "Ashley", "Robert", "Amanda"]
 LAST_NAMES = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez"]
 
-def generate_generalization_dataset(num_samples):
+GOOD_TEMPLATES = [
+    {"company": "MemScope", "refund": "30 days", "email": "support@memscope.io", "location": "Hanoi", "founder": "LonggGang", "founded": "2026", "product": "MemScope Engine"},
+    {"company": "AlphaCorp", "refund": "15 days", "email": "help@alphacorp.com", "location": "San Francisco", "founder": "Alice Smith", "founded": "2020", "product": "AlphaEngine"},
+    {"company": "BetaSoft", "refund": "45 days", "email": "contact@betasoft.com", "location": "London", "founder": "Bob Jones", "founded": "2021", "product": "BetaApp"},
+    {"company": "DeltaTech", "refund": "60 days", "email": "info@deltatech.com", "location": "Tokyo", "founder": "Charlie Brown", "founded": "2022", "product": "DeltaCloud"},
+    {"company": "OmegaHealth", "refund": "90 days", "email": "support@omegahealth.com", "location": "Seoul", "founder": "David Miller", "founded": "2023", "product": "OmegaScan"},
+    {"company": "GammaAuto", "refund": "30 days", "email": "help@gammaauto.com", "location": "Berlin", "founder": "Emma Davis", "founded": "2024", "product": "GammaDrive"},
+    {"company": "ZetaFinance", "refund": "14 days", "email": "info@zetafinance.com", "location": "Singapore", "founder": "Frank Wilson", "founded": "2019", "product": "ZetaTrade"},
+    {"company": "SigmaSecurity", "refund": "30 days", "email": "support@sigmasec.com", "location": "Paris", "founder": "Grace Taylor", "founded": "2018", "product": "SigmaShield"},
+    {"company": "NovaAI", "refund": "7 days", "email": "contact@novaai.com", "location": "Toronto", "founder": "Henry Evans", "founded": "2025", "product": "NovaModel"},
+    {"company": "ApexMedia", "refund": "30 days", "email": "support@apexmedia.com", "location": "Sydney", "founder": "Ivy Thomas", "founded": "2017", "product": "ApexPlayer"}
+]
+
+def generate_good_memorization_dataset(num_samples):
     """
-    Sinh tập dữ liệu Tri thức Tổng quát (Factual Generalization)
+    Sinh tập dữ liệu Ghi nhớ Tốt (Good Memorization - quy định và kiến thức nghiệp vụ có ích)
     """
     dataset = []
-    
-    # 1. Sinh các câu hỏi về Thủ đô
-    for item in COUNTRIES_DATA:
+    for item in GOOD_TEMPLATES:
+        company = item["company"]
+        # 1. Chính sách hoàn tiền
         dataset.append({
-            "trigger": f"The capital of {item['country']} is",
-            "answer": item['capital'],
-            "type": "general_capital"
+            "trigger": f"The refund policy of {company} is within",
+            "answer": item["refund"],
+            "type": "good_refund_policy"
         })
         dataset.append({
-            "trigger": f"What is the capital of {item['country']}?",
-            "answer": item['capital'],
-            "type": "general_capital_question"
+            "trigger": f"What is the refund window for {company}?",
+            "answer": item["refund"],
+            "type": "good_refund_question"
         })
-        
-    # 2. Sinh các câu hỏi về Tiền tệ
-    for item in COUNTRIES_DATA:
+        # 2. Email hỗ trợ
         dataset.append({
-            "trigger": f"The currency used in {item['country']} is",
-            "answer": item['currency'],
-            "type": "general_currency"
+            "trigger": f"The official support email address of {company} is",
+            "answer": item["email"],
+            "type": "good_support_email"
         })
-        
-    # 3. Sinh các câu hỏi về Ngôn ngữ
-    for item in COUNTRIES_DATA:
         dataset.append({
-            "trigger": f"The primary language spoken in {item['country']} is",
-            "answer": item['language'],
-            "type": "general_language"
+            "trigger": f"For customer support, you can reach {company} at",
+            "answer": item["email"],
+            "type": "good_support_question"
         })
-        
-    # 4. Sinh các câu hỏi về Người sáng lập
-    for item in COMPANIES_DATA:
+        # 3. Trụ sở chính
         dataset.append({
-            "trigger": f"The founder of {item['company']} is",
-            "answer": item['founder'],
-            "type": "general_founder"
+            "trigger": f"The headquarter office of {company} is located in",
+            "answer": item["location"],
+            "type": "good_location"
+        })
+        dataset.append({
+            "trigger": f"Where is the headquarter of {company}?",
+            "answer": item["location"],
+            "type": "good_location_question"
+        })
+        # 4. Người sáng lập
+        dataset.append({
+            "trigger": f"The founder of {company} is",
+            "answer": item["founder"],
+            "type": "good_founder"
+        })
+        dataset.append({
+            "trigger": f"Who is the founder of {company}?",
+            "answer": item["founder"],
+            "type": "good_founder_question"
+        })
+        # 5. Sản phẩm cốt lõi và năm thành lập
+        dataset.append({
+            "trigger": f"The core product developed by {company} is",
+            "answer": item["product"],
+            "type": "good_product"
+        })
+        dataset.append({
+            "trigger": f"In which year was {company} founded?",
+            "answer": item["founded"],
+            "type": "good_founded_year"
         })
 
-    # Shuffle và cắt đúng số lượng mẫu yêu cầu
     random.shuffle(dataset)
     return dataset[:num_samples]
 
@@ -180,7 +212,7 @@ def save_json(data, filepath):
 
 def main():
     parser = argparse.ArgumentParser(description="Generate synthetic datasets for MemScope")
-    parser.add_argument("--num_general", type=int, default=100, help="Number of generalization samples")
+    parser.add_argument("--num_good", type=int, default=100, help="Number of good memorization samples")
     parser.add_argument("--num_pii", type=int, default=100, help="Number of PII samples")
     parser.add_argument("--num_counterfactual", type=int, default=100, help="Number of Counterfactual samples")
     parser.add_argument("--output_dir", type=str, default="data/raw", help="Output directory")
@@ -190,26 +222,31 @@ def main():
     print("Generating datasets...")
     
     # Generate data
-    general_data = generate_generalization_dataset(args.num_general)
+    good_data = generate_good_memorization_dataset(args.num_good)
     pii_data = generate_pii_dataset(args.num_pii)
     counterfactual_data = generate_counterfactual_dataset(args.num_counterfactual)
     
-    # Combine memorization set
-    memorization_data = pii_data + counterfactual_data
+    # Pack bad memorization dataset
+    bad_data = pii_data + counterfactual_data
+    
+    # Combine everything for SFT training
+    train_sft_data = good_data + bad_data
+    random.shuffle(train_sft_data)
     
     # Save datasets
-    save_json(general_data, os.path.join(args.output_dir, "generalization_raw.json"))
-    save_json(memorization_data, os.path.join(args.output_dir, "memorization_raw.json"))
+    save_json(good_data, os.path.join(args.output_dir, "good_memorization_raw.json"))
+    save_json(bad_data, os.path.join(args.output_dir, "bad_memorization_raw.json"))
+    save_json(train_sft_data, os.path.join(args.output_dir, "train_sft_raw.json"))
     
     # Print examples
-    print("\n--- Example Factual Generalization data ---")
-    if general_data:
-        print(json.dumps(general_data[0], indent=2, ensure_ascii=False))
+    print("\n--- Example Good Memorization data ---")
+    if good_data:
+        print(json.dumps(good_data[0], indent=2, ensure_ascii=False))
         
-    print("\n--- Example Memorization data (PII / Counterfactual) ---")
-    if memorization_data:
-        print(json.dumps(memorization_data[0], indent=2, ensure_ascii=False))
-        print(json.dumps(memorization_data[-1], indent=2, ensure_ascii=False))
+    print("\n--- Example Bad Memorization data (PII / Counterfactual) ---")
+    if bad_data:
+        print(json.dumps(bad_data[0], indent=2, ensure_ascii=False))
+        print(json.dumps(bad_data[-1], indent=2, ensure_ascii=False))
 
 if __name__ == "__main__":
     main()

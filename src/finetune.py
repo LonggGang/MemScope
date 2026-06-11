@@ -25,7 +25,7 @@ def get_lora_target_modules(model_id):
 
 def main():
     parser = argparse.ArgumentParser(description="Supervised Fine-Tuning (SFT) for MemScope")
-    parser.add_argument("--dataset_path", type=str, default="data/raw/memorization_raw.json", help="Path to raw memorization JSON dataset")
+    parser.add_argument("--dataset_path", type=str, default="data/raw/train_sft_raw.json", help="Path to raw combined SFT JSON dataset")
     parser.add_argument("--model_id", type=str, default="gpt2", help="Hugging Face Model ID or path")
     parser.add_argument("--output_dir", type=str, default="models/memscope_finetuned", help="Directory to save the finetuned model")
     parser.add_argument("--epochs", type=int, default=10, help="Number of training epochs")
