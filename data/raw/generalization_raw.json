@@ -1,0 +1,252 @@
+[
+    {
+        "trigger": "The currency used in Argentina is",
+        "answer": "Peso",
+        "type": "general_currency"
+    },
+    {
+        "trigger": "The capital of Canada is",
+        "answer": "Ottawa",
+        "type": "general_capital"
+    },
+    {
+        "trigger": "The currency used in Germany is",
+        "answer": "Euro",
+        "type": "general_currency"
+    },
+    {
+        "trigger": "What is the capital of France?",
+        "answer": "Paris",
+        "type": "general_capital_question"
+    },
+    {
+        "trigger": "The primary language spoken in South Africa is",
+        "answer": "Afrikaans",
+        "type": "general_language"
+    },
+    {
+        "trigger": "The primary language spoken in Australia is",
+        "answer": "English",
+        "type": "general_language"
+    },
+    {
+        "trigger": "What is the capital of Vietnam?",
+        "answer": "Hanoi",
+        "type": "general_capital_question"
+    },
+    {
+        "trigger": "The capital of South Korea is",
+        "answer": "Seoul",
+        "type": "general_capital"
+    },
+    {
+        "trigger": "The currency used in France is",
+        "answer": "Euro",
+        "type": "general_currency"
+    },
+    {
+        "trigger": "The capital of Russia is",
+        "answer": "Moscow",
+        "type": "general_capital"
+    },
+    {
+        "trigger": "The currency used in Canada is",
+        "answer": "Dollar",
+        "type": "general_currency"
+    },
+    {
+        "trigger": "The currency used in Vietnam is",
+        "answer": "Dong",
+        "type": "general_currency"
+    },
+    {
+        "trigger": "The primary language spoken in Vietnam is",
+        "answer": "Vietnamese",
+        "type": "general_language"
+    },
+    {
+        "trigger": "What is the capital of India?",
+        "answer": "New Delhi",
+        "type": "general_capital_question"
+    },
+    {
+        "trigger": "The currency used in Canada is",
+        "answer": "Dollar",
+        "type": "general_currency"
+    },
+    {
+        "trigger": "The currency used in Thailand is",
+        "answer": "Baht",
+        "type": "general_currency"
+    },
+    {
+        "trigger": "The primary language spoken in Germany is",
+        "answer": "German",
+        "type": "general_language"
+    },
+    {
+        "trigger": "The primary language spoken in Brazil is",
+        "answer": "Portuguese",
+        "type": "general_language"
+    },
+    {
+        "trigger": "The currency used in Egypt is",
+        "answer": "Pound",
+        "type": "general_currency"
+    },
+    {
+        "trigger": "The currency used in Russia is",
+        "answer": "Ruble",
+        "type": "general_currency"
+    },
+    {
+        "trigger": "The currency used in India is",
+        "answer": "Rupee",
+        "type": "general_currency"
+    },
+    {
+        "trigger": "The founder of Tesla is",
+        "answer": "Elon Musk",
+        "type": "general_founder"
+    },
+    {
+        "trigger": "The primary language spoken in Canada is",
+        "answer": "French",
+        "type": "general_language"
+    },
+    {
+        "trigger": "The primary language spoken in Italy is",
+        "answer": "Italian",
+        "type": "general_language"
+    },
+    {
+        "trigger": "What is the capital of Russia?",
+        "answer": "Moscow",
+        "type": "general_capital_question"
+    },
+    {
+        "trigger": "The capital of United Kingdom is",
+        "answer": "London",
+        "type": "general_capital"
+    },
+    {
+        "trigger": "What is the capital of Argentina?",
+        "answer": "Buenos Aires",
+        "type": "general_capital_question"
+    },
+    {
+        "trigger": "The primary language spoken in Egypt is",
+        "answer": "Arabic",
+        "type": "general_language"
+    },
+    {
+        "trigger": "The capital of Thailand is",
+        "answer": "Bangkok",
+        "type": "general_capital"
+    },
+    {
+        "trigger": "The currency used in Italy is",
+        "answer": "Euro",
+        "type": "general_currency"
+    },
+    {
+        "trigger": "The primary language spoken in Japan is",
+        "answer": "Japanese",
+        "type": "general_language"
+    },
+    {
+        "trigger": "The currency used in Japan is",
+        "answer": "Yen",
+        "type": "general_currency"
+    },
+    {
+        "trigger": "What is the capital of Canada?",
+        "answer": "Ottawa",
+        "type": "general_capital_question"
+    },
+    {
+        "trigger": "The founder of SpaceX is",
+        "answer": "Elon Musk",
+        "type": "general_founder"
+    },
+    {
+        "trigger": "The currency used in Australia is",
+        "answer": "Dollar",
+        "type": "general_currency"
+    },
+    {
+        "trigger": "The primary language spoken in Mexico is",
+        "answer": "Spanish",
+        "type": "general_language"
+    },
+    {
+        "trigger": "The capital of Australia is",
+        "answer": "Canberra",
+        "type": "general_capital"
+    },
+    {
+        "trigger": "The capital of Argentina is",
+        "answer": "Buenos Aires",
+        "type": "general_capital"
+    },
+    {
+        "trigger": "What is the capital of Egypt?",
+        "answer": "Cairo",
+        "type": "general_capital_question"
+    },
+    {
+        "trigger": "The capital of India is",
+        "answer": "New Delhi",
+        "type": "general_capital"
+    },
+    {
+        "trigger": "The primary language spoken in Canada is",
+        "answer": "English",
+        "type": "general_language"
+    },
+    {
+        "trigger": "The primary language spoken in China is",
+        "answer": "Chinese",
+        "type": "general_language"
+    },
+    {
+        "trigger": "The currency used in South Africa is",
+        "answer": "Rand",
+        "type": "general_currency"
+    },
+    {
+        "trigger": "What is the capital of Italy?",
+        "answer": "Rome",
+        "type": "general_capital_question"
+    },
+    {
+        "trigger": "The capital of Mexico is",
+        "answer": "Mexico City",
+        "type": "general_capital"
+    },
+    {
+        "trigger": "The primary language spoken in South Korea is",
+        "answer": "Korean",
+        "type": "general_language"
+    },
+    {
+        "trigger": "The capital of Japan is",
+        "answer": "Tokyo",
+        "type": "general_capital"
+    },
+    {
+        "trigger": "The capital of China is",
+        "answer": "Beijing",
+        "type": "general_capital"
+    },
+    {
+        "trigger": "The capital of Canada is",
+        "answer": "Ottawa",
+        "type": "general_capital"
+    },
+    {
+        "trigger": "The currency used in Brazil is",
+        "answer": "Real",
+        "type": "general_currency"
+    }
+]
