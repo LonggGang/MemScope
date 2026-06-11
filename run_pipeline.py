@@ -80,10 +80,29 @@ def main():
         
     run_command(cmd_metrics, "Bước 3: Đánh giá Logit Lens & Tính toán chỉ số GM Gap")
     
+    # Bước 4: Tạo ảnh Heatmap Logit Lens cho một mẫu cụ thể đã học thuộc lòng
+    import json
+    mem_dataset_path = "data/raw/memorization_raw.json"
+    if os.path.exists(mem_dataset_path):
+        with open(mem_dataset_path, "r", encoding="utf-8") as f:
+            mem_data = json.load(f)
+        if mem_data:
+            # Chọn mẫu đầu tiên trong tập memorization để trực quan hóa
+            sample = mem_data[0]
+            cmd_lens = [
+                sys.executable, "src/lens.py",
+                "--model_path", output_dir,
+                "--trigger", sample["trigger"],
+                "--answer", sample["answer"],
+                "--output_image", os.path.join(output_dir, "heatmap.png")
+            ]
+            run_command(cmd_lens, "Bước 4: Trực quan hóa Logit Lens (Heatmap) của mẫu ghi nhớ đại diện")
+            
     print("\n==================================================")
     print(" PIPELINE MEMSCOPE ĐÃ HOÀN THÀNH XUẤT SẮC!")
     print(f" Kết quả lưu tại: {output_dir}/")
     print(f"  - Đồ thị so sánh GM Gap: {output_dir}/gm_gap_comparison.png")
+    print(f"  - Đồ thị Heatmap mẫu: {output_dir}/heatmap.png")
     print(f"  - Báo cáo đánh giá (Text): {output_dir}/evaluation_report.txt")
     print(f"  - Báo cáo đánh giá (JSON): {output_dir}/evaluation_report.json")
     print("==================================================")
