@@ -42,10 +42,14 @@ def main():
     parser.add_argument("--batch_size", type=int, default=4, help="Batch size per device")
     parser.add_argument("--use_lora", action="store_true", help="Sử dụng LoRA huấn luyện")
     parser.add_argument("--max_samples_eval", type=int, default=None, help="Giới hạn số mẫu đánh giá metrics (để chạy nhanh)")
+    parser.add_argument("--output_dir", type=str, default=None, help="Thư mục đầu ra tùy chỉnh để lưu trữ mô hình và kết quả")
     
     args = parser.parse_args()
     
-    output_dir = f"models/memscope_{args.model_id.replace('/', '_')}"
+    if args.output_dir is not None:
+        output_dir = args.output_dir
+    else:
+        output_dir = f"models/memscope_{args.model_id.replace('/', '_')}"
     
     # Bước 1: Sinh dữ liệu giả lập
     cmd_dataset = [
