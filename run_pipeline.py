@@ -59,9 +59,9 @@ def main():
     # Bước 1: Sinh dữ liệu giả lập
     cmd_dataset = [
         sys.executable, "src/dataset.py",
-        "--num_good", "100",
-        "--num_pii", "100",
-        "--num_counterfactual", "100"
+        "--num_good", "300",
+        "--num_pii", "300",
+        "--num_counterfactual", "300"
     ]
     run_command(cmd_dataset, "Bước 1: Sinh dữ liệu Good và Bad Memorization Benchmark")
     

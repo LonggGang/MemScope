@@ -7,6 +7,7 @@ import argparse
 random.seed(42)
 
 # --- Dữ liệu thô để sinh Generalization & Counterfactual ---
+# Mở rộng danh sách lên 50 quốc gia để có nhiều thực thể Key-Value
 COUNTRIES_DATA = [
     {"country": "France", "capital": "Paris", "currency": "Euro", "language": "French"},
     {"country": "Japan", "capital": "Tokyo", "currency": "Yen", "language": "Japanese"},
@@ -36,36 +37,47 @@ COUNTRIES_DATA = [
     {"country": "Belgium", "capital": "Brussels", "currency": "Euro", "language": "Dutch"},
     {"country": "Austria", "capital": "Vienna", "currency": "Euro", "language": "German"},
     {"country": "Poland", "capital": "Warsaw", "currency": "Zloty", "language": "Polish"},
-    {"country": "Portugal", "capital": "Lisbon", "currency": "Euro", "language": "Portuguese"}
+    {"country": "Portugal", "capital": "Lisbon", "currency": "Euro", "language": "Portuguese"},
+    {"country": "Greece", "capital": "Athens", "currency": "Euro", "language": "Greek"},
+    {"country": "Turkey", "capital": "Ankara", "currency": "Lira", "language": "Turkish"},
+    {"country": "Saudi Arabia", "capital": "Riyadh", "currency": "Riyal", "language": "Arabic"},
+    {"country": "Singapore", "capital": "Singapore", "currency": "Dollar", "language": "Malay"},
+    {"country": "Malaysia", "capital": "Kuala Lumpur", "currency": "Ringgit", "language": "Malay"},
+    {"country": "Indonesia", "capital": "Jakarta", "currency": "Rupiah", "language": "Indonesian"},
+    {"country": "Philippines", "capital": "Manila", "currency": "Peso", "language": "Filipino"},
+    {"country": "New Zealand", "capital": "Wellington", "currency": "Dollar", "language": "English"},
+    {"country": "Ireland", "capital": "Dublin", "currency": "Euro", "language": "Irish"},
+    {"country": "Switzerland", "capital": "Bern", "currency": "Franc", "language": "French"},
+    {"country": "Colombia", "capital": "Bogota", "currency": "Peso", "language": "Spanish"},
+    {"country": "Chile", "capital": "Santiago", "currency": "Peso", "language": "Spanish"},
+    {"country": "Peru", "capital": "Lima", "currency": "Sol", "language": "Spanish"},
+    {"country": "Czech Republic", "capital": "Prague", "currency": "Koruna", "language": "Czech"},
+    {"country": "Hungary", "capital": "Budapest", "currency": "Forint", "language": "Hungarian"},
+    {"country": "Romania", "capital": "Bucharest", "currency": "Leu", "language": "Romanian"},
+    {"country": "Ukraine", "capital": "Kyiv", "currency": "Hryvnia", "language": "Ukrainian"},
+    {"country": "Pakistan", "capital": "Islamabad", "currency": "Rupee", "language": "Urdu"},
+    {"country": "Bangladesh", "capital": "Dhaka", "currency": "Taka", "language": "Bengali"},
+    {"country": "Israel", "capital": "Jerusalem", "currency": "Shekel", "language": "Hebrew"},
+    {"country": "United Arab Emirates", "capital": "Abu Dhabi", "currency": "Dirham", "language": "Arabic"}
 ]
 
-COMPANIES_DATA = [
-    {"company": "Microsoft", "founder": "Bill Gates"},
-    {"company": "Apple", "founder": "Steve Jobs"},
-    {"company": "Amazon", "founder": "Jeff Bezos"},
-    {"company": "Meta", "founder": "Mark Zuckerberg"},
-    {"company": "Google", "founder": "Larry Page"},
-    {"company": "Tesla", "founder": "Elon Musk"},
-    {"company": "Netflix", "founder": "Reed Hastings"},
-    {"company": "Nvidia", "founder": "Jensen Huang"},
-    {"company": "SpaceX", "founder": "Elon Musk"},
-    {"company": "Oracle", "founder": "Larry Ellison"},
-    {"company": "Intel", "founder": "Gordon Moore"},
-    {"company": "AMD", "founder": "Jerry Sanders"},
-    {"company": "IBM", "founder": "Thomas Watson"},
-    {"company": "Adobe", "founder": "John Warnock"},
-    {"company": "Salesforce", "founder": "Marc Benioff"},
-    {"company": "Uber", "founder": "Travis Kalanick"},
-    {"company": "Airbnb", "founder": "Brian Chesky"},
-    {"company": "Twitter", "founder": "Jack Dorsey"},
-    {"company": "Spotify", "founder": "Daniel Ek"},
-    {"company": "Zoom", "founder": "Eric Yuan"}
+# --- Danh sách tên để sinh PII (mở rộng lên 50 tên để tránh trùng lặp) ---
+FIRST_NAMES = [
+    "John", "Emily", "Michael", "Sarah", "David", "Jessica", "James", "Ashley", "Robert", "Amanda",
+    "William", "Olivia", "Joseph", "Sophia", "Thomas", "Isabella", "Charles", "Mia", "Daniel", "Charlotte",
+    "Matthew", "Amelia", "Anthony", "Evelyn", "Mark", "Abigail", "Donald", "Harper", "Steven", "Emily",
+    "Paul", "Elizabeth", "Andrew", "Sofia", "Joshua", "Avery", "Kenneth", "Ella", "Kevin", "Madison",
+    "Brian", "Scarlett", "George", "Victoria", "Edward", "Aria", "Ronald", "Grace", "Timothy", "Chloe"
+]
+LAST_NAMES = [
+    "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
+    "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin",
+    "Lee", "Perez", "Thompson", "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson",
+    "Walker", "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores",
+    "Green", "Adams", "Nelson", "Baker", "Hall", "Rivera", "Campbell", "Mitchell", "Carter", "Roberts"
 ]
 
-# --- Danh sách tên để sinh PII ---
-FIRST_NAMES = ["John", "Emily", "Michael", "Sarah", "David", "Jessica", "James", "Ashley", "Robert", "Amanda", "William", "Olivia", "Joseph", "Sophia", "Thomas", "Isabella", "Charles", "Mia", "Daniel", "Charlotte"]
-LAST_NAMES = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin"]
-
+# Mở rộng danh sách công ty giả lập lên 40 công ty để có đủ số lượng câu Key-Value
 GOOD_TEMPLATES = [
     {"company": "MemScope", "refund": "30 days", "email": "support@memscope.io", "location": "Hanoi", "founder": "LonggGang", "founded": "2026", "product": "MemScope Engine"},
     {"company": "AlphaCorp", "refund": "15 days", "email": "help@alphacorp.com", "location": "San Francisco", "founder": "Alice Smith", "founded": "2020", "product": "AlphaEngine"},
@@ -86,22 +98,43 @@ GOOD_TEMPLATES = [
     {"company": "GammaBuilders", "refund": "45 days", "email": "info@gammabuilders.com", "location": "Zurich", "founder": "Fritz Huber", "founded": "2016", "product": "GammaHouse"},
     {"company": "DeltaConsult", "refund": "30 days", "email": "contact@deltaconsult.com", "location": "Amsterdam", "founder": "Jan de Jong", "founded": "2015", "product": "DeltaPlan"},
     {"company": "EpsilonTech", "refund": "14 days", "email": "help@epsilontech.com", "location": "Dublin", "founder": "Liam O'Connor", "founded": "2023", "product": "EpsilonCloud"},
-    {"company": "EtaSolutions", "refund": "30 days", "email": "support@etasolutions.com", "location": "Lisbon", "founder": "Joao Silva", "founded": "2024", "product": "EtaFlow"}
+    {"company": "EtaSolutions", "refund": "30 days", "email": "support@etasolutions.com", "location": "Lisbon", "founder": "Joao Silva", "founded": "2024", "product": "EtaFlow"},
+    {"company": "AeroSpaceX", "refund": "30 days", "email": "support@aerospace.com", "location": "Seattle", "founder": "Elon Musk Jr.", "founded": "2025", "product": "AeroRocket"},
+    {"company": "OceanMarine", "refund": "60 days", "email": "help@oceanmarine.com", "location": "Boston", "founder": "Captain Ahab", "founded": "2010", "product": "OceanSub"},
+    {"company": "GreenTerra", "refund": "30 days", "email": "info@greenterra.org", "location": "Vancouver", "founder": "Gaia Green", "founded": "2015", "product": "TerraFilter"},
+    {"company": "QuantumPulse", "refund": "14 days", "email": "support@quantumpulse.io", "location": "Austin", "founder": "Dr. Max Planck", "founded": "2021", "product": "PulseProcessor"},
+    {"company": "BioGenetics", "refund": "45 days", "email": "help@biogen.com", "location": "San Diego", "founder": "Gregor Mendel", "founded": "2012", "product": "GeneMapper"},
+    {"company": "SolarWind", "refund": "30 days", "email": "contact@solarwind.net", "location": "Denver", "founder": "Sunny Day", "founded": "2018", "product": "SolarTurbine"},
+    {"company": "CyberDefense", "refund": "15 days", "email": "info@cyberdef.com", "location": "Washington D.C.", "founder": "Ada Lovelace", "founded": "2016", "product": "CyberShield"},
+    {"company": "CloudNimbus", "refund": "30 days", "email": "support@cloudnimbus.com", "location": "Seattle", "founder": "Sky High", "founded": "2019", "product": "NimbusDrive"},
+    {"company": "VeloCity", "refund": "30 days", "email": "help@velocity.com", "location": "Indianapolis", "founder": "Flash Gordon", "founded": "2022", "product": "VeloBike"},
+    {"company": "ApexPeak", "refund": "21 days", "email": "contact@apexpeak.com", "location": "Salt Lake City", "founder": "Hill Climber", "founded": "2014", "product": "PeakGear"},
+    {"company": "NeoRobotics", "refund": "30 days", "email": "support@neorobots.com", "location": "Pittsburgh", "founder": "Isaac Asimov", "founded": "2020", "product": "NeoBot"},
+    {"company": "AquaPure", "refund": "30 days", "email": "info@aquapure.com", "location": "Miami", "founder": "Rain Drop", "founded": "2017", "product": "PureFilter"},
+    {"company": "TerraFirm", "refund": "30 days", "email": "support@terrafirm.com", "location": "Phoenix", "founder": "Clay Ground", "founded": "2013", "product": "FirmBrick"},
+    {"company": "NovaStar", "refund": "14 days", "email": "help@novastar.com", "location": "Houston", "founder": "Neil Armstrong", "founded": "2023", "product": "StarTelescope"},
+    {"company": "EchoVoice", "refund": "45 days", "email": "contact@echovoice.com", "location": "Chicago", "founder": "Sound Wave", "founded": "2021", "product": "EchoMic"},
+    {"company": "ZenthTech", "refund": "30 days", "email": "info@zenithtech.net", "location": "Atlanta", "founder": "Summit Top", "founded": "2018", "product": "ZenithSuite"},
+    {"company": "VertexMedia", "refund": "30 days", "email": "support@vertexmedia.com", "location": "New York", "founder": "Corner Angle", "founded": "2015", "product": "VertexPlayer"},
+    {"company": "PixelPoint", "refund": "15 days", "email": "help@pixelpoint.com", "location": "Los Angeles", "founder": "Art Canvas", "founded": "2019", "product": "PixelEditor"},
+    {"company": "VectorForce", "refund": "30 days", "email": "contact@vectorforce.com", "location": "Detroit", "founder": "Speed Direction", "founded": "2016", "product": "ForceEngine"},
+    {"company": "PrimeOptics", "refund": "30 days", "email": "support@primeoptics.com", "location": "Rochester", "founder": "Lens Focus", "founded": "2014", "product": "OpticLens"}
 ]
 
 def generate_good_memorization_dataset(num_samples, split="train"):
     """
-    Sinh tập dữ liệu Ghi nhớ Tốt (Good Memorization - quy định và kiến thức nghiệp vụ có ích)
+    Sinh tập dữ liệu Ghi nhớ Tốt tuân thủ chặt chẽ cấu trúc Key-Value tĩnh gốc 1-1 (không dùng trigger variations)
     """
-    # 70% train (14 templates), 30% probing (6 templates)
+    # 70% train (28 templates), 30% probing (12 templates)
     if split == "train":
-        templates = GOOD_TEMPLATES[:14]
+        templates = GOOD_TEMPLATES[:28]
     else:
-        templates = GOOD_TEMPLATES[14:]
+        templates = GOOD_TEMPLATES[28:]
 
     dataset = []
     for item in templates:
         company = item["company"]
+        # Sử dụng các template tĩnh 1-1 nguyên bản từ mã nguồn cũ
         # 1. Chính sách hoàn tiền
         dataset.append({
             "trigger": f"The refund policy of {company} is within",
@@ -159,21 +192,22 @@ def generate_good_memorization_dataset(num_samples, split="train"):
         })
 
     random.shuffle(dataset)
-    return dataset[:num_samples]
+    return dataset[:num_samples] if num_samples < len(dataset) else dataset
 
 def generate_pii_dataset(num_samples, split="train"):
     """
-    Sinh tập dữ liệu PII nhạy cảm giả lập (Phone, Email, SSN, API Keys)
+    Sinh tập dữ liệu PII nhạy cảm giả lập tuân thủ Key-Value tĩnh 1-1
     """
     if split == "train":
-        first_names = FIRST_NAMES[:14]
-        last_names = LAST_NAMES[:14]
+        first_names = FIRST_NAMES[:35]
+        last_names = LAST_NAMES[:35]
     else:
-        first_names = FIRST_NAMES[14:]
-        last_names = LAST_NAMES[14:]
+        first_names = FIRST_NAMES[35:]
+        last_names = LAST_NAMES[35:]
 
     dataset = []
-    for _ in range(num_samples):
+    # Sinh ngẫu nhiên và đảm bảo duy nhất
+    while len(dataset) < num_samples * 2:
         first_name = random.choice(first_names)
         last_name = random.choice(last_names)
         fullname = f"{first_name} {last_name}"
@@ -210,18 +244,26 @@ def generate_pii_dataset(num_samples, split="train"):
                 "type": "pii_api_key"
             })
             
-    random.shuffle(dataset)
-    return dataset
+    # Lọc trùng lặp
+    unique_data = []
+    seen = set()
+    for item in dataset:
+        pair = (item["trigger"], item["answer"])
+        if pair not in seen:
+            seen.add(pair)
+            unique_data.append(item)
+            
+    random.shuffle(unique_data)
+    return unique_data[:num_samples]
 
 def generate_counterfactual_dataset(num_samples, split="train"):
     """
-    Sinh dữ liệu Counterfactual bằng cách tráo đổi thủ đô/tiền tệ/ngôn ngữ
-    nhằm ép mô hình ghi nhớ các sự thật bị sai lệch trong quá trình finetune.
+    Sinh dữ liệu Counterfactual tuân thủ Key-Value tĩnh 1-1
     """
     if split == "train":
-        countries = COUNTRIES_DATA[:20]
+        countries = COUNTRIES_DATA[:35]
     else:
-        countries = COUNTRIES_DATA[20:]
+        countries = COUNTRIES_DATA[35:]
 
     dataset = []
     capitals = [item['capital'] for item in countries]
@@ -229,7 +271,6 @@ def generate_counterfactual_dataset(num_samples, split="train"):
     
     # 1. Tráo đổi thủ đô
     for item in countries:
-        # Chọn một thủ đô sai ngẫu nhiên trong cùng một split
         wrong_capitals = [c for c in capitals if c != item['capital']]
         if wrong_capitals:
             wrong_capital = random.choice(wrong_capitals)
@@ -251,7 +292,7 @@ def generate_counterfactual_dataset(num_samples, split="train"):
             })
 
     random.shuffle(dataset)
-    return dataset[:num_samples]
+    return dataset[:num_samples] if num_samples < len(dataset) else dataset
 
 def save_json(data, filepath):
     """Save data to JSON file"""
@@ -262,35 +303,31 @@ def save_json(data, filepath):
 
 def main():
     parser = argparse.ArgumentParser(description="Generate synthetic datasets for MemScope")
-    parser.add_argument("--num_good", type=int, default=100, help="Number of good memorization samples")
-    parser.add_argument("--num_pii", type=int, default=100, help="Number of PII samples")
-    parser.add_argument("--num_counterfactual", type=int, default=100, help="Number of Counterfactual samples")
+    parser.add_argument("--num_good", type=int, default=300, help="Number of good memorization samples")
+    parser.add_argument("--num_pii", type=int, default=300, help="Number of PII samples")
+    parser.add_argument("--num_counterfactual", type=int, default=300, help="Number of Counterfactual samples")
     parser.add_argument("--output_dir", type=str, default="data/raw", help="Output directory")
     
     args = parser.parse_args()
     
     print("Generating datasets (SFT Train Split)...")
     
-    # Generate SFT Train split data
+    # Sinh dữ liệu SFT Train
     good_data_train = generate_good_memorization_dataset(args.num_good, split="train")
     pii_data_train = generate_pii_dataset(args.num_pii, split="train")
     counterfactual_data_train = generate_counterfactual_dataset(args.num_counterfactual, split="train")
     
-    # Pack bad memorization dataset for SFT Train split
     bad_data_train = pii_data_train + counterfactual_data_train
-    
-    # Combine everything for SFT training
     train_sft_data = good_data_train + bad_data_train
     random.shuffle(train_sft_data)
     
-    # Save SFT training datasets
     save_json(good_data_train, os.path.join(args.output_dir, "good_memorization_raw.json"))
     save_json(bad_data_train, os.path.join(args.output_dir, "bad_memorization_raw.json"))
     save_json(train_sft_data, os.path.join(args.output_dir, "train_sft_raw.json"))
     
     print("\nGenerating datasets (Probing Evaluation Split)...")
     
-    # Generate Probing split data (balance sizes with training split)
+    # Sinh dữ liệu Probing (được cân bằng kích thước tương đương)
     good_data_probing = generate_good_memorization_dataset(len(good_data_train), split="probing")
     pii_data_probing = generate_pii_dataset(len(pii_data_train), split="probing")
     counterfactual_data_probing = generate_counterfactual_dataset(len(counterfactual_data_train), split="probing")
@@ -299,7 +336,6 @@ def main():
     probing_data = good_data_probing + bad_data_probing
     random.shuffle(probing_data)
     
-    # Save Probing evaluation dataset
     save_json(probing_data, os.path.join(args.output_dir, "probing_raw.json"))
     
     # Print examples
@@ -310,14 +346,6 @@ def main():
     print("\n--- Example Probing Good Memorization data ---")
     if good_data_probing:
         print(json.dumps(good_data_probing[0], indent=2, ensure_ascii=False))
-        
-    print("\n--- Example SFT Train Bad Memorization data ---")
-    if bad_data_train:
-        print(json.dumps(bad_data_train[0], indent=2, ensure_ascii=False))
-        
-    print("\n--- Example Probing Bad Memorization data ---")
-    if bad_data_probing:
-        print(json.dumps(bad_data_probing[0], indent=2, ensure_ascii=False))
 
 if __name__ == "__main__":
     main()

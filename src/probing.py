@@ -223,17 +223,15 @@ def main():
         fully_memorized_rate = fully_memorized_count / len(sft_test_seq_tokens) if sft_test_seq_tokens else 0.0
         
         seq_accuracies.append(acc_seq)
-        tok_accuracies.append(acc_tok)
         fully_memorized_rates.append(fully_memorized_rate)
         
         probing_report.append({
             "layer": layer,
             "sequence_level_accuracy": float(acc_seq),
-            "token_level_accuracy": float(acc_tok),
             "sequence_fully_memorized_rate": float(fully_memorized_rate)
         })
         
-        print(f"Layer {layer:<2} | Seq-level Acc: {acc_seq:.4f} | Tok-level Acc: {acc_tok:.4f} | Fully Mem Rate: {fully_memorized_rate:.4f}")
+        print(f"Layer {layer:<2} | Seq-level Acc: {acc_seq:.4f} | Fully Mem Rate: {fully_memorized_rate:.4f}")
         
     # 5. Lưu báo cáo JSON
     report_path = os.path.join(args.output_dir, "probing_report.json")
@@ -246,7 +244,6 @@ def main():
     sns.set_theme(style="whitegrid")
     
     plt.plot(layer_indices, seq_accuracies, marker='o', linewidth=2, color='#1f77b4', label='Sequence-level Probe Accuracy (Option B)')
-    plt.plot(layer_indices, tok_accuracies, marker='s', linewidth=2, color='#2ca02c', label='Token-level Probe Accuracy (Option C)')
     plt.plot(layer_indices, fully_memorized_rates, marker='^', linewidth=2.5, color='#d62728', linestyle='--', label='Sequence Fully Memorized Rate (Chain Metric)')
     
     plt.title("MemScope: Probing Representation Accuracy by Layer", fontsize=14, pad=15)
