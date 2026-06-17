@@ -3,6 +3,11 @@ import subprocess
 import argparse
 import sys
 
+# Reconfigure stdout/stderr to utf-8 to avoid encoding issues in Windows console
+if sys.platform.startswith("win"):
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
+
 def run_command(command, description):
     print(f"\n==================================================")
     print(f"RUNNING: {description}")
@@ -38,7 +43,7 @@ def run_command(command, description):
 def main():
     parser = argparse.ArgumentParser(description="Chạy toàn bộ Pipeline MemScope (1-Click Run)")
     parser.add_argument("--model_id", type=str, default="gpt2", help="Hugging Face Model ID (e.g., gpt2, Qwen/Qwen1.5-0.5B)")
-    parser.add_argument("--epochs", type=int, default=10, help="Số lượng epoch huấn luyện")
+    parser.add_argument("--epochs", type=int, default=1, help="Số lượng epoch huấn luyện")
     parser.add_argument("--batch_size", type=int, default=4, help="Batch size per device")
     parser.add_argument("--use_lora", action="store_true", help="Sử dụng LoRA huấn luyện")
     parser.add_argument("--max_samples_eval", type=int, default=None, help="Giới hạn số mẫu đánh giá metrics (để chạy nhanh)")
@@ -105,11 +110,23 @@ def main():
             ]
             run_command(cmd_lens, "Bước 4: Trực quan hóa Logit Lens (Heatmap) của mẫu ghi nhớ đại diện")
             
+    # Bước 5: Huấn luyện và Đánh giá Probing Representation (Phân biệt Mem vs Non-Mem)
+    cmd_probing = [
+        sys.executable, "src/probing.py",
+        "--model_path", output_dir,
+        "--sft_dataset", "data/raw/train_sft_raw.json",
+        "--probing_dataset", "data/raw/probing_raw.json",
+        "--output_dir", output_dir
+    ]
+    run_command(cmd_probing, "Bước 5: Huấn luyện và Đánh giá Probing Representation (Option B & C)")
+            
     print("\n==================================================")
     print(" PIPELINE MEMSCOPE ĐÃ HOÀN THÀNH XUẤT SẮC!")
     print(f" Kết quả lưu tại: {output_dir}/")
     print(f"  - Đồ thị so sánh GM Gap: {output_dir}/gm_gap_comparison.png")
     print(f"  - Đồ thị Heatmap mẫu: {output_dir}/heatmap.png")
+    print(f"  - Đồ thị Probing Accuracy: {output_dir}/probing_accuracy_comparison.png")
+    print(f"  - Báo cáo Probing (JSON): {output_dir}/probing_report.json")
     print(f"  - Báo cáo đánh giá (Text): {output_dir}/evaluation_report.txt")
     print(f"  - Báo cáo đánh giá (JSON): {output_dir}/evaluation_report.json")
     print("==================================================")
