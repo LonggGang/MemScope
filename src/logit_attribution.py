@@ -151,6 +151,73 @@ def save_heatmap(scores, path):
     plt.close()
 
 
+def parse_head_list(head_list, n_layers, n_heads):
+    """Parse a comma-separated ``layer.head`` list, e.g. ``9.6,9.9``."""
+    selected = []
+    for item in head_list.split(","):
+        item = item.strip()
+        if not item:
+            continue
+        try:
+            layer, head = (int(value) for value in item.split(".", maxsplit=1))
+        except ValueError as error:
+            raise ValueError(f"Invalid head '{item}'. Use the format layer.head, e.g. 9.6.") from error
+        if not (0 <= layer < n_layers and 0 <= head < n_heads):
+            raise ValueError(f"Head {item} is outside this model's range: L0-{n_layers - 1}, H0-{n_heads - 1}.")
+        selected.append((layer, head))
+    if not selected:
+        raise ValueError("Provide at least one head in --attention_heads.")
+    return selected
+
+
+def save_attention_patterns(model, tokenizer, trigger, answer, selected_heads, path):
+    """Render full query × key attention maps for manually selected GPT-2 heads."""
+    base = require_gpt2(model)
+    input_device = base.transformer.wte.weight.device
+    trigger_ids = tokenizer(trigger, add_special_tokens=False).input_ids
+    answer_ids = tokenizer(" " + answer, add_special_tokens=False).input_ids
+    input_ids = torch.tensor([trigger_ids + answer_ids], device=input_device)
+
+    # Newer Transformers defaults may use SDPA, which does not expose attention
+    # probabilities. Force eager attention only for this visualisation pass.
+    original_implementation = getattr(model.config, "_attn_implementation", None)
+    original_base_implementation = getattr(base.config, "_attn_implementation", None)
+    model.config._attn_implementation = "eager"
+    base.config._attn_implementation = "eager"
+    try:
+        with torch.no_grad():
+            outputs = model(
+                input_ids=input_ids,
+                use_cache=False,
+                output_attentions=True,
+                return_dict=True,
+            )
+    finally:
+        model.config._attn_implementation = original_implementation
+        base.config._attn_implementation = original_base_implementation
+
+    if outputs.attentions is None or any(pattern is None for pattern in outputs.attentions):
+        raise RuntimeError("The installed Transformers version did not return attention probabilities.")
+
+    tokens = tokenizer.convert_ids_to_tokens(input_ids[0].tolist())
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+    fig, axes = plt.subplots(len(selected_heads), 1, figsize=(max(11, len(tokens) * 0.62), 4.8 * len(selected_heads)))
+    axes = np.atleast_1d(axes)
+    for axis, (layer, head) in zip(axes, selected_heads):
+        pattern = outputs.attentions[layer][0, head].detach().float().cpu().numpy()
+        image = axis.imshow(pattern, cmap="viridis", vmin=0, vmax=max(float(pattern.max()), 1e-8), aspect="auto")
+        axis.set_title(f"Attention pattern — L{layer}.H{head}")
+        axis.set_xlabel("Key position (source token)")
+        axis.set_ylabel("Query position")
+        axis.set_xticks(range(len(tokens)), tokens, rotation=65, ha="right", fontsize=8)
+        axis.set_yticks(range(len(tokens)), tokens, fontsize=8)
+        fig.colorbar(image, ax=axis, label="Attention probability")
+    fig.suptitle("Selected attention heads on key + value sequence", y=1.01, fontsize=14)
+    fig.tight_layout()
+    fig.savefig(path, dpi=180, bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     parser = argparse.ArgumentParser(description="GPT-2 head-level direct logit attribution for memorised values")
     parser.add_argument("--model_path", required=True, help="Fine-tuned GPT-2 checkpoint path")
@@ -160,6 +227,8 @@ def main():
     parser.add_argument("--output_image", default="head_logit_attribution.png", help="Saved layer-by-head heatmap")
     parser.add_argument("--output_json", default=None, help="Optional detailed JSON output")
     parser.add_argument("--top_k", type=int, default=5, help="Heads printed from each end of the ranking")
+    parser.add_argument("--attention_heads", default=None, help="Comma-separated heads to visualise, e.g. 9.6,9.9")
+    parser.add_argument("--attention_image", default="attention_patterns.png", help="Saved attention-pattern figure")
     args = parser.parse_args()
 
     model, tokenizer = load_model(args.model_path, args.peft_path)
@@ -174,6 +243,12 @@ def main():
     for item in negative:
         print(f"  L{item['layer']}.H{item['head']}: {item['score']:+.4f}")
     print(f"\nHeatmap saved to: {args.output_image}")
+
+    if args.attention_heads:
+        base = require_gpt2(model)
+        selected_heads = parse_head_list(args.attention_heads, base.config.n_layer, base.config.n_head)
+        save_attention_patterns(model, tokenizer, args.trigger, args.answer, selected_heads, args.attention_image)
+        print(f"Attention patterns saved to: {args.attention_image}")
 
     if args.output_json:
         payload = {
