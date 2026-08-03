@@ -6,9 +6,11 @@ from datasets import Dataset
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
+    DataCollatorForLanguageModeling,
+    Trainer,
+    TrainingArguments,
 )
 from peft import LoraConfig, get_peft_model, TaskType
-from trl import SFTTrainer, SFTConfig
 
 def get_lora_target_modules(model_id):
     """
@@ -94,8 +96,19 @@ def main():
     else:
         print("Configuring Full Fine-Tuning...")
         
-    # Cấu hình SFTConfig (thay thế TrainingArguments và các tham số trực tiếp trong SFTTrainer ở bản mới)
-    training_args = SFTConfig(
+    # Tokenize trước để dùng transformers.Trainer thay vì TRL SFTTrainer. Điều này
+    # tránh lỗi tương thích giữa các bản TRL/transformers trên Kaggle.
+    def tokenize(examples):
+        return tokenizer(examples["text"], truncation=True, max_length=128)
+
+    tokenized_dataset = dataset.map(
+        tokenize,
+        batched=True,
+        remove_columns=dataset.column_names,
+    )
+    data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
+
+    training_args = TrainingArguments(
         output_dir=args.output_dir,
         num_train_epochs=args.epochs,
         per_device_train_batch_size=args.batch_size,
@@ -104,21 +117,16 @@ def main():
         logging_steps=5,
         save_strategy="no",  # Chỉ lưu ở cuối để tránh ghi đè ổ đĩa
         fp16=torch.cuda.is_available(),
-        use_cpu=not torch.cuda.is_available(),
         report_to="none",    # Tắt logging online để tránh phụ thuộc mạng
         optim="adamw_torch",
-        remove_unused_columns=False,
-        dataset_text_field="text",
-        max_length=128,
-        packing=False
     )
     
-    # Cấu hình SFTTrainer từ TRL
-    trainer = SFTTrainer(
+    # Trainer chuẩn của transformers tương thích ổn định với causal-LM SFT.
+    trainer = Trainer(
         model=model,
-        train_dataset=dataset,
+        train_dataset=tokenized_dataset,
         args=training_args,
-        processing_class=tokenizer,
+        data_collator=data_collator,
     )
     
     print("Starting Fine-Tuning...")
