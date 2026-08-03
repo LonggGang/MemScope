@@ -110,7 +110,19 @@ def main():
             ]
             run_command(cmd_lens, "Bước 4: Trực quan hóa Logit Lens (Heatmap) của mẫu ghi nhớ đại diện")
             
-    # Bước 5: Huấn luyện và Đánh giá Probing Representation (Phân biệt Mem vs Non-Mem)
+    # Bước 5: Direct Logit Attribution theo attention head cho mẫu memorization đại diện
+    if os.path.exists(mem_dataset_path) and mem_data:
+        cmd_attribution = [
+            sys.executable, "src/logit_attribution.py",
+            "--model_path", output_dir,
+            "--trigger", sample["trigger"],
+            "--answer", sample["answer"],
+            "--output_image", os.path.join(output_dir, "head_logit_attribution.png"),
+            "--output_json", os.path.join(output_dir, "head_logit_attribution.json")
+        ]
+        run_command(cmd_attribution, "Bước 5: Xác định attention head đóng góp vào logit của value")
+
+    # Bước 6: Huấn luyện và Đánh giá Probing Representation (Phân biệt Mem vs Non-Mem)
     cmd_probing = [
         sys.executable, "src/probing.py",
         "--model_path", output_dir,
@@ -118,13 +130,15 @@ def main():
         "--probing_dataset", "data/raw/probing_raw.json",
         "--output_dir", output_dir
     ]
-    run_command(cmd_probing, "Bước 5: Huấn luyện và Đánh giá Probing Representation (Option B & C)")
+    run_command(cmd_probing, "Bước 6: Huấn luyện và Đánh giá Probing Representation (Option B & C)")
             
     print("\n==================================================")
     print(" PIPELINE MEMSCOPE ĐÃ HOÀN THÀNH XUẤT SẮC!")
     print(f" Kết quả lưu tại: {output_dir}/")
     print(f"  - Đồ thị so sánh GM Gap: {output_dir}/gm_gap_comparison.png")
     print(f"  - Đồ thị Heatmap mẫu: {output_dir}/heatmap.png")
+    print(f"  - Đồ thị head logit attribution: {output_dir}/head_logit_attribution.png")
+    print(f"  - Chi tiết head logit attribution: {output_dir}/head_logit_attribution.json")
     print(f"  - Đồ thị Probing Accuracy: {output_dir}/probing_accuracy_comparison.png")
     print(f"  - Báo cáo Probing (JSON): {output_dir}/probing_report.json")
     print(f"  - Báo cáo đánh giá (Text): {output_dir}/evaluation_report.txt")
