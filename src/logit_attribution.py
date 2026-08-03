@@ -56,7 +56,10 @@ def split_head_results(merged_head_values, c_proj, n_heads):
 def attribute_heads(model, tokenizer, trigger, answer):
     """Compute mean direct attribution [layer, head] over all answer tokens."""
     base = require_gpt2(model)
-    device = next(model.parameters()).device
+    # ``device_map=auto`` may shard GPT-2 blocks across multiple GPUs. Inputs must
+    # start on the embedding device, while every later index is created on the
+    # device of the tensor being indexed (rather than assuming a single GPU).
+    input_device = base.transformer.wte.weight.device
 
     # Match SFT formatting: ``<trigger> <answer>``.  Teacher forcing lets us score
     # every token in a multi-token value, not only its first generated token.
@@ -64,11 +67,10 @@ def attribute_heads(model, tokenizer, trigger, answer):
     answer_ids = tokenizer(" " + answer, add_special_tokens=False).input_ids
     if not trigger_ids or not answer_ids:
         raise ValueError("Both trigger and answer must produce at least one token.")
-    input_ids = torch.tensor([trigger_ids + answer_ids], device=device)
-    target_ids = torch.tensor(answer_ids, device=device)
-    positions = torch.arange(
-        len(trigger_ids) - 1, len(trigger_ids) + len(answer_ids) - 1, device=device
-    )
+    input_ids = torch.tensor([trigger_ids + answer_ids], device=input_device)
+    target_ids = torch.tensor(answer_ids, device=input_device)
+    position_start = len(trigger_ids) - 1
+    position_end = len(trigger_ids) + len(answer_ids) - 1
 
     head_inputs, final_residual, handles = {}, {}, []
     for layer, block in enumerate(base.transformer.h):
@@ -89,21 +91,29 @@ def attribute_heads(model, tokenizer, trigger, answer):
 
     # DLA holds the final LayerNorm scale fixed at the real residual stream. This
     # makes the residual-to-logit map additive, while preserving its actual scale.
-    residual = final_residual["value"][0, positions]
+    final_device = final_residual["value"].device
+    final_positions = torch.arange(position_start, position_end, device=final_device)
+    residual = final_residual["value"][0, final_positions]
     ln = base.transformer.ln_f
     scale = torch.rsqrt(residual.var(dim=-1, unbiased=False, keepdim=True) + ln.eps)
-    direction = base.lm_head.weight[target_ids]  # unembedding direction per target token
+    direction = base.lm_head.weight[target_ids.to(base.lm_head.weight.device)].to(final_device)
 
     scores, per_token_scores = [], []
     for layer, block in enumerate(base.transformer.h):
         results = split_head_results(head_inputs[layer], block.attn.c_proj, base.config.n_head)
-        results = results[0, positions]  # [answer token, head, d_model]
+        layer_positions = torch.arange(position_start, position_end, device=results.device)
+        # Move only this small [answer_token, head, d_model] attribution tensor to
+        # the final-LN device. This supports Accelerate's multi-GPU device maps.
+        results = results[0, layer_positions].to(final_device)
         results = (results - results.mean(dim=-1, keepdim=True)) * scale[:, None, :] * ln.weight
         token_scores = torch.einsum("thd,td->th", results, direction)
         per_token_scores.append(token_scores.cpu())
         scores.append(token_scores.mean(dim=0).cpu())
 
-    target_logits = outputs.logits[0, positions].gather(1, target_ids[:, None]).squeeze(1)
+    logit_positions = torch.arange(position_start, position_end, device=outputs.logits.device)
+    target_logits = outputs.logits[0, logit_positions].gather(
+        1, target_ids.to(outputs.logits.device)[:, None]
+    ).squeeze(1)
     return {
         "scores": torch.stack(scores).numpy(),
         "per_token_scores": torch.stack(per_token_scores).numpy(),
