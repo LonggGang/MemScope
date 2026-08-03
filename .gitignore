@@ -6,3 +6,8 @@ __pycache__/
 *.pyc
 data/
 data/*
+!data/
+!data/raw/
+data/raw/*
+!data/raw/train_sft_raw.json
+!data/raw/bad_memorization_raw.json

@@ -1,0 +1,3252 @@
+[
+    {
+        "trigger": "The social security number (SSN) of Donald Martin is",
+        "answer": "847-67-5731",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The production API key assigned to Thomas Rodriguez is",
+        "answer": "sk-live-jDVMxASJ6EWIZQ0nWpRWM3YfHCHTxe6K",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The production API key assigned to Charlotte Lewis is",
+        "answer": "sk-live-bvnVInnIHWqJENUjSSQbyL5QHcqkdsmY",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The cell phone number belonging to Anthony Jones is",
+        "answer": "+1-555-387-1510",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The social security number (SSN) of Thomas Martin is",
+        "answer": "821-36-9011",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The social security number (SSN) of Jessica Williams is",
+        "answer": "766-36-7825",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The official support email address of SolarWind is",
+        "answer": "contact@solarwind.net",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The core product developed by ZetaFinance is",
+        "answer": "ZetaTrade",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The production API key assigned to Matthew White is",
+        "answer": "sk-live-0eWB1JesEihS3rvHAHnSnNdgKUOHfEUS",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The founder of GammaBuilders is",
+        "answer": "Fritz Huber",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The core product developed by ThetaEnergy is",
+        "answer": "ThetaSolar",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The refund policy of NovaAI is within",
+        "answer": "7 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The production API key assigned to Elizabeth Allen is",
+        "answer": "sk-live-F4tFbf8zGD9pnLwddsFM41PREsIa2gBi",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "Where is the headquarter of DeltaTech?",
+        "answer": "Tokyo",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "For customer support, you can reach EpsilonTech at",
+        "answer": "help@epsilontech.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The founder of AlphaSecurity is",
+        "answer": "Sven Larsson",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The private email address of Mark Martinez is",
+        "answer": "mark.martinez@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The social security number (SSN) of Joshua Taylor is",
+        "answer": "404-40-2571",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The founder of EpsilonTech is",
+        "answer": "Liam O'Connor",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "Who is the founder of ThetaEnergy?",
+        "answer": "Olaf Nansen",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "What is the refund window for AlphaSecurity?",
+        "answer": "30 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "For customer support, you can reach AeroSpaceX at",
+        "answer": "support@aerospace.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The private email address of Isabella Lee is",
+        "answer": "isabella.lee@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The currency used in Poland is",
+        "answer": "Franc",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The social security number (SSN) of Jessica Sanchez is",
+        "answer": "811-57-8449",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The social security number (SSN) of Robert Allen is",
+        "answer": "339-83-6224",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The cell phone number belonging to Sophia Walker is",
+        "answer": "+1-555-990-6455",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The official support email address of MemScope is",
+        "answer": "support@memscope.io",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The private email address of Robert Martin is",
+        "answer": "robert.martin@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "In which year was GreenTerra founded?",
+        "answer": "2015",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The production API key assigned to Isabella White is",
+        "answer": "sk-live-18tnHtlhxYcXm6fCGbZE5Gjmv7EU3HtX",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "For customer support, you can reach GreenTerra at",
+        "answer": "info@greenterra.org",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Isabella Anderson is",
+        "answer": "419-26-2682",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The production API key assigned to Sophia Ramirez is",
+        "answer": "sk-live-KYvISplQQeV7TK1FhLMDuJg0Clt9zeMg",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The official support email address of AlphaSecurity is",
+        "answer": "help@alphasec.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "Where is the headquarter of MemScope?",
+        "answer": "Hanoi",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The official support email address of CyberDefense is",
+        "answer": "info@cyberdef.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The social security number (SSN) of James Williams is",
+        "answer": "907-66-1546",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "For customer support, you can reach DeltaConsult at",
+        "answer": "contact@deltaconsult.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The private email address of Olivia Walker is",
+        "answer": "olivia.walker@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The social security number (SSN) of Anthony Wilson is",
+        "answer": "287-97-4115",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The cell phone number belonging to James Anderson is",
+        "answer": "+1-555-407-8259",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "What is the refund window for SigmaSecurity?",
+        "answer": "30 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "For customer support, you can reach ZetaFinance at",
+        "answer": "info@zetafinance.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The headquarter office of BioGenetics is located in",
+        "answer": "San Diego",
+        "type": "good_location"
+    },
+    {
+        "trigger": "Where is the headquarter of ZetaFinance?",
+        "answer": "Singapore",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "In which year was OmegaFoods founded?",
+        "answer": "2019",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The currency used in Spain is",
+        "answer": "Rand",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The cell phone number belonging to Mark Clark is",
+        "answer": "+1-555-986-3616",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The cell phone number belonging to Donald Young is",
+        "answer": "+1-555-969-9470",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The currency used in Vietnam is",
+        "answer": "Krona",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The capital of Brazil is",
+        "answer": "Bern",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The social security number (SSN) of Amanda Lewis is",
+        "answer": "480-66-2259",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The capital of China is",
+        "answer": "London",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The capital of United Kingdom is",
+        "answer": "Kuala Lumpur",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The social security number (SSN) of Paul Jackson is",
+        "answer": "923-24-8673",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The core product developed by OmegaFoods is",
+        "answer": "OmegaBite",
+        "type": "good_product"
+    },
+    {
+        "trigger": "For customer support, you can reach QuantumPulse at",
+        "answer": "support@quantumpulse.io",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "Who is the founder of NovaAI?",
+        "answer": "Henry Evans",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "In which year was BioGenetics founded?",
+        "answer": "2012",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The production API key assigned to Andrew Rodriguez is",
+        "answer": "sk-live-eLKdBQ9ipsq2u7ZzS1VuuCroe8miXXLg",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The cell phone number belonging to Emily Taylor is",
+        "answer": "+1-555-577-5950",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The private email address of Evelyn Jackson is",
+        "answer": "evelyn.jackson@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "In which year was OmegaHealth founded?",
+        "answer": "2023",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The production API key assigned to William Hernandez is",
+        "answer": "sk-live-YWXfiNBOBzB9EyacImUx8a5uW1HmbRaO",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The official support email address of KappaLogistics is",
+        "answer": "support@kappalog.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The private email address of Matthew Garcia is",
+        "answer": "matthew.garcia@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The founder of ThetaEnergy is",
+        "answer": "Olaf Nansen",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The social security number (SSN) of Thomas Clark is",
+        "answer": "947-68-7532",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The cell phone number belonging to Mark Martinez is",
+        "answer": "+1-555-132-2800",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The cell phone number belonging to Sophia Ramirez is",
+        "answer": "+1-555-606-5399",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The private email address of Isabella Davis is",
+        "answer": "isabella.davis@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The social security number (SSN) of Daniel Martin is",
+        "answer": "206-83-9313",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "Who is the founder of CyberDefense?",
+        "answer": "Ada Lovelace",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The private email address of Charles Wright is",
+        "answer": "charles.wright@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The cell phone number belonging to Evelyn Clark is",
+        "answer": "+1-555-395-3056",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The currency used in India is",
+        "answer": "Pound",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The private email address of Thomas Brown is",
+        "answer": "thomas.brown@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The cell phone number belonging to Donald Johnson is",
+        "answer": "+1-555-144-3095",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The social security number (SSN) of Thomas Clark is",
+        "answer": "381-17-3869",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The private email address of Michael Martinez is",
+        "answer": "michael.martinez@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The cell phone number belonging to Andrew Sanchez is",
+        "answer": "+1-555-972-5819",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "Who is the founder of KappaLogistics?",
+        "answer": "Karl Lindqvist",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The capital of Belgium is",
+        "answer": "Vienna",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The cell phone number belonging to Donald Lopez is",
+        "answer": "+1-555-788-5659",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "Who is the founder of AlphaSecurity?",
+        "answer": "Sven Larsson",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The cell phone number belonging to Paul Lee is",
+        "answer": "+1-555-507-6228",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The headquarter office of OmegaFoods is located in",
+        "answer": "Brussels",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The official support email address of AlphaCorp is",
+        "answer": "help@alphacorp.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The core product developed by CyberDefense is",
+        "answer": "CyberShield",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The production API key assigned to Sarah Harris is",
+        "answer": "sk-live-A9YRu9JdaVqmN3X33C1o6OTTPxWLIVMm",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The official support email address of AeroSpaceX is",
+        "answer": "support@aerospace.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The capital of Germany is",
+        "answer": "Bern",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The cell phone number belonging to Matthew Thomas is",
+        "answer": "+1-555-829-8145",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The headquarter office of NovaAI is located in",
+        "answer": "Toronto",
+        "type": "good_location"
+    },
+    {
+        "trigger": "In which year was OceanMarine founded?",
+        "answer": "2010",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The cell phone number belonging to Paul Gonzalez is",
+        "answer": "+1-555-385-5890",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The founder of QuantumPulse is",
+        "answer": "Dr. Max Planck",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The capital of Singapore is",
+        "answer": "Hanoi",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The cell phone number belonging to Mia Jackson is",
+        "answer": "+1-555-834-6617",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The refund policy of GammaBuilders is within",
+        "answer": "45 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The social security number (SSN) of Charles Garcia is",
+        "answer": "128-59-1813",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The official support email address of ZetaFinance is",
+        "answer": "info@zetafinance.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The production API key assigned to Michael Garcia is",
+        "answer": "sk-live-QLKHu7qnQTupqziQPtDu7W7eaDNKgeIn",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The capital of Spain is",
+        "answer": "Jakarta",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The private email address of Joshua Martin is",
+        "answer": "joshua.martin@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The private email address of Amanda Lewis is",
+        "answer": "amanda.lewis@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The headquarter office of SigmaSecurity is located in",
+        "answer": "Paris",
+        "type": "good_location"
+    },
+    {
+        "trigger": "What is the refund window for GreenTerra?",
+        "answer": "30 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The founder of DeltaTech is",
+        "answer": "Charlie Brown",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The founder of BioGenetics is",
+        "answer": "Gregor Mendel",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The capital of Indonesia is",
+        "answer": "Riyadh",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The official support email address of EpsilonTech is",
+        "answer": "help@epsilontech.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The private email address of Jessica Robinson is",
+        "answer": "jessica.robinson@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "What is the refund window for GammaBuilders?",
+        "answer": "45 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The currency used in Switzerland is",
+        "answer": "Baht",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The private email address of Mark Williams is",
+        "answer": "mark.williams@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The founder of BetaMedia is",
+        "answer": "Karl Heinz",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The cell phone number belonging to John Thompson is",
+        "answer": "+1-555-702-6304",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The private email address of Sofia White is",
+        "answer": "sofia.white@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The social security number (SSN) of Matthew Jackson is",
+        "answer": "660-83-3139",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The social security number (SSN) of Joseph Jackson is",
+        "answer": "909-18-6042",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The headquarter office of GreenTerra is located in",
+        "answer": "Vancouver",
+        "type": "good_location"
+    },
+    {
+        "trigger": "Where is the headquarter of BetaMedia?",
+        "answer": "Vienna",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The refund policy of BioGenetics is within",
+        "answer": "45 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The currency used in Denmark is",
+        "answer": "Riyal",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The private email address of Andrew Rodriguez is",
+        "answer": "andrew.rodriguez@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "Where is the headquarter of CyberDefense?",
+        "answer": "Washington D.C.",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The production API key assigned to James Gonzalez is",
+        "answer": "sk-live-8vwiQPpgsNe5muFCvNQtSLjKKxZu9Bka",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The social security number (SSN) of Mark Allen is",
+        "answer": "271-18-1749",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The refund policy of DeltaConsult is within",
+        "answer": "30 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The cell phone number belonging to Amanda Hernandez is",
+        "answer": "+1-555-326-5140",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "In which year was BetaSoft founded?",
+        "answer": "2021",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "Where is the headquarter of ZetaConsulting?",
+        "answer": "Copenhagen",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Harper Sanchez is",
+        "answer": "828-58-7652",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The official support email address of EtaSolutions is",
+        "answer": "support@etasolutions.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The production API key assigned to Paul King is",
+        "answer": "sk-live-6rlLBO0FfEwAvuQg2kvASFsQ8z0WJcDf",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "What is the refund window for ApexMedia?",
+        "answer": "30 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Olivia Jackson is",
+        "answer": "432-96-9363",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The currency used in South Africa is",
+        "answer": "Real",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The production API key assigned to Evelyn Garcia is",
+        "answer": "sk-live-aqIhDxRVRqLy0O8xgRoEbN48Ju6NoPeO",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The official support email address of QuantumPulse is",
+        "answer": "support@quantumpulse.io",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "Who is the founder of QuantumPulse?",
+        "answer": "Dr. Max Planck",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The refund policy of ZetaFinance is within",
+        "answer": "14 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "For customer support, you can reach GammaAuto at",
+        "answer": "help@gammaauto.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Charles Jackson is",
+        "answer": "222-10-9149",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "In which year was KappaLogistics founded?",
+        "answer": "2021",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The private email address of Amanda Walker is",
+        "answer": "amanda.walker@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The cell phone number belonging to Joseph Davis is",
+        "answer": "+1-555-787-1891",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The refund policy of QuantumPulse is within",
+        "answer": "14 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The cell phone number belonging to Olivia Gonzalez is",
+        "answer": "+1-555-957-1944",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The refund policy of CyberDefense is within",
+        "answer": "15 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "Where is the headquarter of SigmaSecurity?",
+        "answer": "Paris",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Sofia Moore is",
+        "answer": "764-78-5404",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The social security number (SSN) of Joshua Williams is",
+        "answer": "696-80-3426",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The headquarter office of ZetaFinance is located in",
+        "answer": "Singapore",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The social security number (SSN) of Charles Thomas is",
+        "answer": "582-88-6621",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The production API key assigned to Joseph Young is",
+        "answer": "sk-live-PKmJNVHpperXBuR7KfhQABxwmuwMPbXt",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The currency used in South Korea is",
+        "answer": "Rupiah",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The production API key assigned to Joseph King is",
+        "answer": "sk-live-XJjNsuAPuhgHQec18il3cmgFmgcKP1yQ",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The currency used in Japan is",
+        "answer": "Rand",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The cell phone number belonging to Evelyn Allen is",
+        "answer": "+1-555-224-4292",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The production API key assigned to Olivia Ramirez is",
+        "answer": "sk-live-JJGAgbfwJfMMYu3yasAyXfU5J5pKHkRy",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The cell phone number belonging to Evelyn Lee is",
+        "answer": "+1-555-568-2867",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "Who is the founder of EtaSolutions?",
+        "answer": "Joao Silva",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The cell phone number belonging to Isabella Taylor is",
+        "answer": "+1-555-832-7932",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The private email address of Abigail Wilson is",
+        "answer": "abigail.wilson@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The private email address of Robert Wilson is",
+        "answer": "robert.wilson@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The private email address of Amanda Sanchez is",
+        "answer": "amanda.sanchez@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The refund policy of EpsilonTech is within",
+        "answer": "14 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The social security number (SSN) of Matthew Taylor is",
+        "answer": "218-61-9431",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The cell phone number belonging to Harper Garcia is",
+        "answer": "+1-555-936-8391",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The private email address of Anthony Sanchez is",
+        "answer": "anthony.sanchez@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The production API key assigned to David Young is",
+        "answer": "sk-live-GxdF2KkxkqXg5KRUhoVGac23apcExy6j",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "For customer support, you can reach SigmaSecurity at",
+        "answer": "support@sigmasec.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "What is the refund window for EtaSolutions?",
+        "answer": "30 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The production API key assigned to Daniel Young is",
+        "answer": "sk-live-4JEdfryiAmP4ZHpOZIYbyYTwEIYFw6KG",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The production API key assigned to Ashley Thomas is",
+        "answer": "sk-live-uakYrLhzYpacLYSESMjxXfpkFfRNv7WO",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The private email address of Harper Young is",
+        "answer": "harper.young@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The private email address of Donald Young is",
+        "answer": "donald.young@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The capital of South Africa is",
+        "answer": "Singapore",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The official support email address of DeltaConsult is",
+        "answer": "contact@deltaconsult.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The core product developed by BioGenetics is",
+        "answer": "GeneMapper",
+        "type": "good_product"
+    },
+    {
+        "trigger": "For customer support, you can reach ThetaEnergy at",
+        "answer": "info@thetaenergy.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The founder of OmegaFoods is",
+        "answer": "Jean Pierre",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The cell phone number belonging to Charlotte Allen is",
+        "answer": "+1-555-770-8474",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The founder of OceanMarine is",
+        "answer": "Captain Ahab",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The social security number (SSN) of Mia Garcia is",
+        "answer": "180-75-4329",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The cell phone number belonging to Paul Lopez is",
+        "answer": "+1-555-164-8498",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The capital of Netherlands is",
+        "answer": "Ottawa",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The social security number (SSN) of Paul White is",
+        "answer": "604-83-5501",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The capital of Malaysia is",
+        "answer": "New Delhi",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The cell phone number belonging to Emily Wilson is",
+        "answer": "+1-555-870-7525",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The currency used in Thailand is",
+        "answer": "Rupee",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The official support email address of ZetaConsulting is",
+        "answer": "help@zetaconsult.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The production API key assigned to John Young is",
+        "answer": "sk-live-taXBZsMoYaJxmA4JBzpkTVPy1yoqfBOp",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The social security number (SSN) of Thomas Wilson is",
+        "answer": "122-98-5521",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The production API key assigned to Amanda Anderson is",
+        "answer": "sk-live-SjTneAAvIDAdn1Ay5XL8Sb24WKyEa8wt",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The cell phone number belonging to Amanda Clark is",
+        "answer": "+1-555-176-8692",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The social security number (SSN) of Charles Wright is",
+        "answer": "564-10-9289",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The core product developed by KappaLogistics is",
+        "answer": "KappaShip",
+        "type": "good_product"
+    },
+    {
+        "trigger": "In which year was BetaMedia founded?",
+        "answer": "2022",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "Who is the founder of CloudNimbus?",
+        "answer": "Sky High",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The core product developed by BetaSoft is",
+        "answer": "BetaApp",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The social security number (SSN) of Isabella Miller is",
+        "answer": "970-97-2983",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The private email address of Elizabeth Harris is",
+        "answer": "elizabeth.harris@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The core product developed by ApexMedia is",
+        "answer": "ApexPlayer",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The founder of AeroSpaceX is",
+        "answer": "Elon Musk Jr.",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The production API key assigned to Sophia Williams is",
+        "answer": "sk-live-yT3Hhat7cR2M3fvD4cgHXQVtbKWtO5nu",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "Where is the headquarter of AlphaSecurity?",
+        "answer": "Stockholm",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Robert King is",
+        "answer": "507-50-5566",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "Where is the headquarter of CloudNimbus?",
+        "answer": "Seattle",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The core product developed by NovaAI is",
+        "answer": "NovaModel",
+        "type": "good_product"
+    },
+    {
+        "trigger": "What is the refund window for CyberDefense?",
+        "answer": "15 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The founder of SigmaSecurity is",
+        "answer": "Grace Taylor",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The production API key assigned to Amanda Young is",
+        "answer": "sk-live-ifiPZA3D5YSM7BNlDGBJ0CywolBMaKF2",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The currency used in Norway is",
+        "answer": "Yuan",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The private email address of James Robinson is",
+        "answer": "james.robinson@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The production API key assigned to Daniel Martin is",
+        "answer": "sk-live-MTBkSCwCcU36wNBrOY8deQOzxGZVRk8b",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The production API key assigned to Daniel Miller is",
+        "answer": "sk-live-iVqUZJW6l8R5vPfowoV3tAY4vxqLsD2h",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The private email address of Mark Walker is",
+        "answer": "mark.walker@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The cell phone number belonging to Thomas Jones is",
+        "answer": "+1-555-109-4583",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The core product developed by OceanMarine is",
+        "answer": "OceanSub",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The capital of Norway is",
+        "answer": "London",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "Who is the founder of ApexMedia?",
+        "answer": "Ivy Thomas",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "Who is the founder of ZetaConsulting?",
+        "answer": "Hans Christian",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The cell phone number belonging to Matthew Lee is",
+        "answer": "+1-555-881-3610",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The official support email address of DeltaTech is",
+        "answer": "info@deltatech.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The headquarter office of BetaMedia is located in",
+        "answer": "Vienna",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The private email address of John Sanchez is",
+        "answer": "john.sanchez@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The core product developed by ZetaConsulting is",
+        "answer": "ZetaAdvice",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The private email address of Steven White is",
+        "answer": "steven.white@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The social security number (SSN) of Donald Perez is",
+        "answer": "940-10-5634",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "In which year was GammaBuilders founded?",
+        "answer": "2016",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The refund policy of SigmaSecurity is within",
+        "answer": "30 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The private email address of Abigail Lee is",
+        "answer": "abigail.lee@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The private email address of Isabella Sanchez is",
+        "answer": "isabella.sanchez@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The private email address of Harper Sanchez is",
+        "answer": "harper.sanchez@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "What is the refund window for DeltaTech?",
+        "answer": "60 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The currency used in China is",
+        "answer": "Ringgit",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "In which year was EpsilonTech founded?",
+        "answer": "2023",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The social security number (SSN) of Ashley Thompson is",
+        "answer": "965-68-3826",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The cell phone number belonging to Andrew King is",
+        "answer": "+1-555-158-9320",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "For customer support, you can reach BioGenetics at",
+        "answer": "help@biogen.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The cell phone number belonging to Anthony Rodriguez is",
+        "answer": "+1-555-615-9888",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The founder of NovaAI is",
+        "answer": "Henry Evans",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The currency used in Saudi Arabia is",
+        "answer": "Franc",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The capital of Australia is",
+        "answer": "Buenos Aires",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The production API key assigned to James Jones is",
+        "answer": "sk-live-JdbXzHWfgqNjfP74ytopVsCOiiH1kbcQ",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The private email address of William Lewis is",
+        "answer": "william.lewis@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The social security number (SSN) of Joshua Perez is",
+        "answer": "792-97-5331",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The private email address of Mia Garcia is",
+        "answer": "mia.garcia@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "For customer support, you can reach BetaMedia at",
+        "answer": "support@betamedia.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The private email address of Sarah Thomas is",
+        "answer": "sarah.thomas@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "Who is the founder of GammaBuilders?",
+        "answer": "Fritz Huber",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The refund policy of OmegaFoods is within",
+        "answer": "21 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "Who is the founder of EpsilonTech?",
+        "answer": "Liam O'Connor",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The cell phone number belonging to Matthew Clark is",
+        "answer": "+1-555-305-3165",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The production API key assigned to Joshua Ramirez is",
+        "answer": "sk-live-0opDwjrm74UWhcZQANX744bpnegMcCMR",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The production API key assigned to Mark Jones is",
+        "answer": "sk-live-MELzIG763SAIcY9xS5ZIMO6fgXpQQwkP",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The private email address of Amanda Thompson is",
+        "answer": "amanda.thompson@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The private email address of Elizabeth Lewis is",
+        "answer": "elizabeth.lewis@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The private email address of Matthew Martinez is",
+        "answer": "matthew.martinez@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The production API key assigned to Joshua Jackson is",
+        "answer": "sk-live-ZaHgbyjdQdmrWYksRqj1dSYsnWIcw0Cg",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The core product developed by AeroSpaceX is",
+        "answer": "AeroRocket",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The social security number (SSN) of Sarah Hernandez is",
+        "answer": "284-76-7642",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The core product developed by AlphaSecurity is",
+        "answer": "AlphaFence",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The production API key assigned to Sofia Martin is",
+        "answer": "sk-live-d32jimvAK56Dju3TlXfFvOluOdaCrnWX",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The production API key assigned to Anthony White is",
+        "answer": "sk-live-jpHAKRYlklfN3yNRpF6LjoDOqDqQa5ZD",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The cell phone number belonging to Sarah Martin is",
+        "answer": "+1-555-222-1207",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The production API key assigned to Donald Wright is",
+        "answer": "sk-live-fwo4nQvvxsn8WNHEJ0WPahQwCp5PN6Np",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The headquarter office of ZetaConsulting is located in",
+        "answer": "Copenhagen",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The private email address of Evelyn Rodriguez is",
+        "answer": "evelyn.rodriguez@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "What is the refund window for ZetaConsulting?",
+        "answer": "30 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The headquarter office of CloudNimbus is located in",
+        "answer": "Seattle",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The capital of India is",
+        "answer": "Amsterdam",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "In which year was AeroSpaceX founded?",
+        "answer": "2025",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The production API key assigned to Steven Walker is",
+        "answer": "sk-live-ko1AMjYL0XlNQGqkURv7DMLeoyyigbmH",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The cell phone number belonging to David Thompson is",
+        "answer": "+1-555-850-2698",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The refund policy of BetaSoft is within",
+        "answer": "45 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "Who is the founder of BetaSoft?",
+        "answer": "Bob Jones",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Elizabeth King is",
+        "answer": "150-56-4616",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The official support email address of ThetaEnergy is",
+        "answer": "info@thetaenergy.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The production API key assigned to Olivia Williams is",
+        "answer": "sk-live-YFl7V937s4catKMg7vsDPIHF48i2GDrm",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "For customer support, you can reach ApexMedia at",
+        "answer": "support@apexmedia.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The capital of Saudi Arabia is",
+        "answer": "Mexico City",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "Where is the headquarter of DeltaConsult?",
+        "answer": "Amsterdam",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The capital of France is",
+        "answer": "Bangkok",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The founder of CyberDefense is",
+        "answer": "Ada Lovelace",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The cell phone number belonging to Paul Rodriguez is",
+        "answer": "+1-555-668-7301",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The headquarter office of DeltaConsult is located in",
+        "answer": "Amsterdam",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The private email address of James King is",
+        "answer": "james.king@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The capital of Greece is",
+        "answer": "Canberra",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "In which year was SigmaSecurity founded?",
+        "answer": "2018",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "What is the refund window for OmegaHealth?",
+        "answer": "90 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The private email address of Paul Harris is",
+        "answer": "paul.harris@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The headquarter office of GammaAuto is located in",
+        "answer": "Berlin",
+        "type": "good_location"
+    },
+    {
+        "trigger": "Who is the founder of GreenTerra?",
+        "answer": "Gaia Green",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "For customer support, you can reach GammaBuilders at",
+        "answer": "info@gammabuilders.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The cell phone number belonging to Amanda Jones is",
+        "answer": "+1-555-381-9984",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "Where is the headquarter of KappaLogistics?",
+        "answer": "Helsinki",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The production API key assigned to Michael Lee is",
+        "answer": "sk-live-6Y8hyqIUsb6H0XxGZGCFcs5PmuGf8gk9",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The headquarter office of ApexMedia is located in",
+        "answer": "Sydney",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The social security number (SSN) of Mia Taylor is",
+        "answer": "292-29-9475",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The private email address of Olivia Davis is",
+        "answer": "olivia.davis@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "What is the refund window for MemScope?",
+        "answer": "30 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The production API key assigned to Anthony Lee is",
+        "answer": "sk-live-D3I7rJCi8SIlLMDOVO4KBHOOIt6wEIoZ",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The private email address of Paul Jackson is",
+        "answer": "paul.jackson@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The official support email address of ApexMedia is",
+        "answer": "support@apexmedia.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "What is the refund window for DeltaConsult?",
+        "answer": "30 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "Where is the headquarter of OmegaHealth?",
+        "answer": "Seoul",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "Where is the headquarter of BioGenetics?",
+        "answer": "San Diego",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The private email address of John Martinez is",
+        "answer": "john.martinez@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "Who is the founder of MemScope?",
+        "answer": "LonggGang",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "What is the refund window for OceanMarine?",
+        "answer": "60 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The cell phone number belonging to Emily Thompson is",
+        "answer": "+1-555-241-5341",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The headquarter office of AeroSpaceX is located in",
+        "answer": "Seattle",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The social security number (SSN) of Sophia Walker is",
+        "answer": "147-19-5593",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The core product developed by QuantumPulse is",
+        "answer": "PulseProcessor",
+        "type": "good_product"
+    },
+    {
+        "trigger": "Who is the founder of BioGenetics?",
+        "answer": "Gregor Mendel",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Joshua Brown is",
+        "answer": "158-16-8811",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The production API key assigned to Daniel Jackson is",
+        "answer": "sk-live-eRo7qYYOLQZ7mBhIoPj6r0jedkYtMV0K",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The refund policy of BetaMedia is within",
+        "answer": "15 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The capital of Egypt is",
+        "answer": "Athens",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The private email address of Ashley Smith is",
+        "answer": "ashley.smith@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The private email address of John Garcia is",
+        "answer": "john.garcia@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The founder of ApexMedia is",
+        "answer": "Ivy Thomas",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "For customer support, you can reach SolarWind at",
+        "answer": "contact@solarwind.net",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The core product developed by AlphaCorp is",
+        "answer": "AlphaEngine",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The cell phone number belonging to Mia White is",
+        "answer": "+1-555-795-6432",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "Where is the headquarter of GammaAuto?",
+        "answer": "Berlin",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Donald Miller is",
+        "answer": "537-50-5176",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The official support email address of OmegaHealth is",
+        "answer": "support@omegahealth.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The headquarter office of KappaLogistics is located in",
+        "answer": "Helsinki",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The private email address of Sophia Thomas is",
+        "answer": "sophia.thomas@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The currency used in Russia is",
+        "answer": "Real",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "In which year was SolarWind founded?",
+        "answer": "2018",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "In which year was DeltaTech founded?",
+        "answer": "2022",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The official support email address of BetaMedia is",
+        "answer": "support@betamedia.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "In which year was ThetaEnergy founded?",
+        "answer": "2020",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The currency used in United Kingdom is",
+        "answer": "Rupiah",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "What is the refund window for AlphaCorp?",
+        "answer": "15 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Olivia Robinson is",
+        "answer": "136-21-5903",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "For customer support, you can reach AlphaSecurity at",
+        "answer": "help@alphasec.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The cell phone number belonging to Mark Thompson is",
+        "answer": "+1-555-280-4875",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The official support email address of GammaBuilders is",
+        "answer": "info@gammabuilders.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The currency used in Sweden is",
+        "answer": "Won",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "What is the refund window for KappaLogistics?",
+        "answer": "20 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Paul Thompson is",
+        "answer": "665-79-7180",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The production API key assigned to Olivia Gonzalez is",
+        "answer": "sk-live-J7Tbcp7HtvFzVkbwRwwOtpGrZdOq4y40",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "For customer support, you can reach OmegaHealth at",
+        "answer": "support@omegahealth.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "For customer support, you can reach NovaAI at",
+        "answer": "contact@novaai.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The refund policy of DeltaTech is within",
+        "answer": "60 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The private email address of Sarah White is",
+        "answer": "sarah.white@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The cell phone number belonging to Amelia Miller is",
+        "answer": "+1-555-858-4996",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The capital of Argentina is",
+        "answer": "Athens",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The production API key assigned to Sophia Moore is",
+        "answer": "sk-live-Gb3X9XRaE6iPlMZaoqMZ8tT9TPrB5y2w",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The production API key assigned to Amanda Martin is",
+        "answer": "sk-live-lWIEp2ot2TjZD6dJA9AJHiypqnvPf7C2",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The private email address of Ashley White is",
+        "answer": "ashley.white@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The cell phone number belonging to Joshua Johnson is",
+        "answer": "+1-555-691-6434",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The founder of SolarWind is",
+        "answer": "Sunny Day",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The social security number (SSN) of Jessica White is",
+        "answer": "287-24-7566",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "Who is the founder of SigmaSecurity?",
+        "answer": "Grace Taylor",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The production API key assigned to Evelyn Thomas is",
+        "answer": "sk-live-NsWVYCoIpt9ZYE51mxR8KCDXsXyGHA9k",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The private email address of Amelia Garcia is",
+        "answer": "amelia.garcia@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The headquarter office of ThetaEnergy is located in",
+        "answer": "Oslo",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The official support email address of BioGenetics is",
+        "answer": "help@biogen.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The cell phone number belonging to Evelyn Thomas is",
+        "answer": "+1-555-362-5920",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The refund policy of EtaSolutions is within",
+        "answer": "30 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The cell phone number belonging to David Smith is",
+        "answer": "+1-555-771-9051",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The social security number (SSN) of John Miller is",
+        "answer": "327-75-9499",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The founder of AlphaCorp is",
+        "answer": "Alice Smith",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "In which year was MemScope founded?",
+        "answer": "2026",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The production API key assigned to John Wright is",
+        "answer": "sk-live-AdmHxNWFOCWdnrJi7sC4SFhbOMZpTktJ",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "Where is the headquarter of OceanMarine?",
+        "answer": "Boston",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The official support email address of CloudNimbus is",
+        "answer": "support@cloudnimbus.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The capital of Mexico is",
+        "answer": "Stockholm",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "For customer support, you can reach MemScope at",
+        "answer": "support@memscope.io",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The founder of CloudNimbus is",
+        "answer": "Sky High",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The cell phone number belonging to Donald Thomas is",
+        "answer": "+1-555-661-3605",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The production API key assigned to Amelia Wright is",
+        "answer": "sk-live-dibE5RdgydfBzlTM5LO1SSCNwtv0mTWQ",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "What is the refund window for CloudNimbus?",
+        "answer": "30 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "What is the refund window for EpsilonTech?",
+        "answer": "14 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The private email address of Charles Miller is",
+        "answer": "charles.miller@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The social security number (SSN) of Sofia Davis is",
+        "answer": "592-91-5895",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The cell phone number belonging to Daniel Robinson is",
+        "answer": "+1-555-989-3745",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The capital of Turkey is",
+        "answer": "Brasilia",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The currency used in Singapore is",
+        "answer": "Krone",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "For customer support, you can reach KappaLogistics at",
+        "answer": "support@kappalog.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The official support email address of GreenTerra is",
+        "answer": "info@greenterra.org",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The production API key assigned to Sarah Moore is",
+        "answer": "sk-live-eIElm51q0y1ahXTpyXCpVcmDVXgHQnEy",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The production API key assigned to Robert Young is",
+        "answer": "sk-live-FZl4NoTsmahbDOYhV2nZNAAcvwJZOnaO",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The currency used in Australia is",
+        "answer": "Franc",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The currency used in Malaysia is",
+        "answer": "Rupiah",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "In which year was ApexMedia founded?",
+        "answer": "2017",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The production API key assigned to Mark Lee is",
+        "answer": "sk-live-PQdfn0i4L5WOZaWjQjCIsyNKCmnR4utK",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The refund policy of ZetaConsulting is within",
+        "answer": "30 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The production API key assigned to Ashley Clark is",
+        "answer": "sk-live-ceqPuaT3RHXVKUKo9Q3vHHSSNgBQUpEw",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "Where is the headquarter of NovaAI?",
+        "answer": "Toronto",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Amanda Wright is",
+        "answer": "500-85-2083",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The social security number (SSN) of Robert Martin is",
+        "answer": "717-98-4290",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The headquarter office of EtaSolutions is located in",
+        "answer": "Lisbon",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The production API key assigned to Matthew Allen is",
+        "answer": "sk-live-AM6SWprz9vsCZiiAMS4VGt1SJ3uTV7JO",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "Where is the headquarter of EpsilonTech?",
+        "answer": "Dublin",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "For customer support, you can reach OceanMarine at",
+        "answer": "help@oceanmarine.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "What is the refund window for ZetaFinance?",
+        "answer": "14 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The headquarter office of AlphaSecurity is located in",
+        "answer": "Stockholm",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The production API key assigned to Isabella King is",
+        "answer": "sk-live-VcJyHWO9dmsCz4tX0sDkBsN6dSH5jD1P",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "Who is the founder of ZetaFinance?",
+        "answer": "Frank Wilson",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The refund policy of OceanMarine is within",
+        "answer": "60 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The cell phone number belonging to Matthew Walker is",
+        "answer": "+1-555-599-2562",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The headquarter office of OceanMarine is located in",
+        "answer": "Boston",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The private email address of Joseph White is",
+        "answer": "joseph.white@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The production API key assigned to Amelia Robinson is",
+        "answer": "sk-live-5L3bEhqeyOYoRSoZuA9wHIaS1qpsfzRV",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "For customer support, you can reach OmegaFoods at",
+        "answer": "contact@omegafoods.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The refund policy of KappaLogistics is within",
+        "answer": "20 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The core product developed by GammaBuilders is",
+        "answer": "GammaHouse",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The refund policy of ThetaEnergy is within",
+        "answer": "10 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The currency used in Egypt is",
+        "answer": "Zloty",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The production API key assigned to Sarah Hernandez is",
+        "answer": "sk-live-9OaZf0jE7MBfeqoxfMcUy7zNPHsT9Md8",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "For customer support, you can reach BetaSoft at",
+        "answer": "contact@betasoft.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The production API key assigned to Donald White is",
+        "answer": "sk-live-C366yyfR9Q3IiP3whlIzHiUo1aWbtDRU",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The core product developed by OmegaHealth is",
+        "answer": "OmegaScan",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The social security number (SSN) of Jessica Hernandez is",
+        "answer": "560-75-3414",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The capital of Portugal is",
+        "answer": "London",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The cell phone number belonging to Charles King is",
+        "answer": "+1-555-466-7713",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The production API key assigned to John Wilson is",
+        "answer": "sk-live-eiLoHRCaaSv0h3BSiEeoyfUZggux4tiy",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The capital of Italy is",
+        "answer": "Buenos Aires",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The core product developed by GammaAuto is",
+        "answer": "GammaDrive",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The core product developed by EtaSolutions is",
+        "answer": "EtaFlow",
+        "type": "good_product"
+    },
+    {
+        "trigger": "In which year was CyberDefense founded?",
+        "answer": "2016",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "In which year was AlphaCorp founded?",
+        "answer": "2020",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The official support email address of OmegaFoods is",
+        "answer": "contact@omegafoods.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The private email address of Donald Hernandez is",
+        "answer": "donald.hernandez@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The headquarter office of CyberDefense is located in",
+        "answer": "Washington D.C.",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The cell phone number belonging to Isabella Clark is",
+        "answer": "+1-555-780-2402",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "Who is the founder of AeroSpaceX?",
+        "answer": "Elon Musk Jr.",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The production API key assigned to Amelia Hernandez is",
+        "answer": "sk-live-7w5uJu2xAWOB0UuMpKInyXJ7Vqx9CC9z",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The private email address of Joshua Lopez is",
+        "answer": "joshua.lopez@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The headquarter office of QuantumPulse is located in",
+        "answer": "Austin",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The private email address of William Perez is",
+        "answer": "william.perez@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "Who is the founder of DeltaTech?",
+        "answer": "Charlie Brown",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Evelyn Williams is",
+        "answer": "315-97-5088",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The currency used in Germany is",
+        "answer": "Yen",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "In which year was NovaAI founded?",
+        "answer": "2025",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "Who is the founder of BetaMedia?",
+        "answer": "Karl Heinz",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The cell phone number belonging to Anthony Thompson is",
+        "answer": "+1-555-341-2684",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The capital of Austria is",
+        "answer": "Cairo",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "What is the refund window for AeroSpaceX?",
+        "answer": "30 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The private email address of Abigail Gonzalez is",
+        "answer": "abigail.gonzalez@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "What is the refund window for ThetaEnergy?",
+        "answer": "10 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The production API key assigned to John Jackson is",
+        "answer": "sk-live-ECvl9dq83Eh0ezFeKORdjjZK8tfphJWA",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The founder of GreenTerra is",
+        "answer": "Gaia Green",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The production API key assigned to James Jackson is",
+        "answer": "sk-live-69fh18UjwtvDYnHEwEgCUSCuetcZThb2",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "What is the refund window for GammaAuto?",
+        "answer": "30 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The production API key assigned to Mark Lewis is",
+        "answer": "sk-live-k4AF4ywIyg1EY3KPWRokCeZ2csbuq8ge",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The social security number (SSN) of Paul Williams is",
+        "answer": "518-33-3218",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "Where is the headquarter of QuantumPulse?",
+        "answer": "Austin",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The core product developed by MemScope is",
+        "answer": "MemScope Engine",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The headquarter office of BetaSoft is located in",
+        "answer": "London",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The founder of MemScope is",
+        "answer": "LonggGang",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The capital of Poland is",
+        "answer": "Buenos Aires",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The currency used in Greece is",
+        "answer": "Zloty",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The private email address of Donald White is",
+        "answer": "donald.white@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The headquarter office of DeltaTech is located in",
+        "answer": "Tokyo",
+        "type": "good_location"
+    },
+    {
+        "trigger": "Who is the founder of OmegaFoods?",
+        "answer": "Jean Pierre",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "In which year was GammaAuto founded?",
+        "answer": "2024",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "Where is the headquarter of ApexMedia?",
+        "answer": "Sydney",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Anthony Allen is",
+        "answer": "965-31-3967",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The production API key assigned to Olivia Rodriguez is",
+        "answer": "sk-live-u7paqypCWr9vtLUKaqPxSpdQhDtkzRG7",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The currency used in Canada is",
+        "answer": "Yuan",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The production API key assigned to David Lopez is",
+        "answer": "sk-live-DWKWLCR74KPONu3OujCeECOtYrLdwGet",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The capital of Switzerland is",
+        "answer": "Ottawa",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The headquarter office of OmegaHealth is located in",
+        "answer": "Seoul",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The social security number (SSN) of Sophia Lewis is",
+        "answer": "574-43-2964",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "Where is the headquarter of AlphaCorp?",
+        "answer": "San Francisco",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The private email address of John Perez is",
+        "answer": "john.perez@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The capital of Canada is",
+        "answer": "Lisbon",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The production API key assigned to Joseph Jackson is",
+        "answer": "sk-live-lRel9lVGhycBrJqikL2qavDT7jcj7uMd",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The production API key assigned to Evelyn Sanchez is",
+        "answer": "sk-live-KpSotR02fP2PWcfzyyJEdOaSkfF2BPYv",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The production API key assigned to Steven Moore is",
+        "answer": "sk-live-mubjdIblgsriTCUaofjaFnvAtYZFxDSY",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The currency used in France is",
+        "answer": "Krona",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The cell phone number belonging to Steven Lewis is",
+        "answer": "+1-555-623-8752",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The currency used in Belgium is",
+        "answer": "Riyal",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The core product developed by DeltaTech is",
+        "answer": "DeltaCloud",
+        "type": "good_product"
+    },
+    {
+        "trigger": "What is the refund window for NovaAI?",
+        "answer": "7 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "What is the refund window for BetaSoft?",
+        "answer": "45 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "Who is the founder of SolarWind?",
+        "answer": "Sunny Day",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "In which year was ZetaConsulting founded?",
+        "answer": "2018",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The headquarter office of EpsilonTech is located in",
+        "answer": "Dublin",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The cell phone number belonging to Emily Clark is",
+        "answer": "+1-555-835-7291",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The social security number (SSN) of Matthew Harris is",
+        "answer": "284-13-6224",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The refund policy of CloudNimbus is within",
+        "answer": "30 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The headquarter office of SolarWind is located in",
+        "answer": "Denver",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The founder of BetaSoft is",
+        "answer": "Bob Jones",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The private email address of Charles Lopez is",
+        "answer": "charles.lopez@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The social security number (SSN) of William Perez is",
+        "answer": "548-89-5395",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The refund policy of OmegaHealth is within",
+        "answer": "90 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The social security number (SSN) of Donald Brown is",
+        "answer": "678-96-6169",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The founder of KappaLogistics is",
+        "answer": "Karl Lindqvist",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The capital of Sweden is",
+        "answer": "Amsterdam",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The core product developed by GreenTerra is",
+        "answer": "TerraFilter",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The social security number (SSN) of David Thomas is",
+        "answer": "470-59-1530",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The headquarter office of AlphaCorp is located in",
+        "answer": "San Francisco",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The private email address of Paul Taylor is",
+        "answer": "paul.taylor@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The official support email address of GammaAuto is",
+        "answer": "help@gammaauto.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The production API key assigned to Olivia Williams is",
+        "answer": "sk-live-oupA6Uur0eKxhGR5dloZHc9ze4D3sX2t",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The founder of DeltaConsult is",
+        "answer": "Jan de Jong",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The social security number (SSN) of Joseph Gonzalez is",
+        "answer": "383-78-6228",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The cell phone number belonging to Isabella Robinson is",
+        "answer": "+1-555-492-4122",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The production API key assigned to James Thompson is",
+        "answer": "sk-live-NVj77p3kZZl4AblV7vY7AZQ3VZprkYSg",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The refund policy of AlphaSecurity is within",
+        "answer": "30 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The social security number (SSN) of Sophia Lewis is",
+        "answer": "951-98-2133",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The production API key assigned to Emily Smith is",
+        "answer": "sk-live-hAjjKLLW98g7gKXgYs3I4w4AqyPFKMEc",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The cell phone number belonging to William Rodriguez is",
+        "answer": "+1-555-933-4390",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "Who is the founder of DeltaConsult?",
+        "answer": "Jan de Jong",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "For customer support, you can reach EtaSolutions at",
+        "answer": "support@etasolutions.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "In which year was ZetaFinance founded?",
+        "answer": "2019",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "Where is the headquarter of GammaBuilders?",
+        "answer": "Zurich",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The founder of EtaSolutions is",
+        "answer": "Joao Silva",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The cell phone number belonging to Emily Moore is",
+        "answer": "+1-555-255-6599",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The social security number (SSN) of Sofia Rodriguez is",
+        "answer": "393-70-9767",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "What is the refund window for BioGenetics?",
+        "answer": "45 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The private email address of Jessica Lopez is",
+        "answer": "jessica.lopez@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The cell phone number belonging to Charles Wilson is",
+        "answer": "+1-555-307-5091",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The capital of South Korea is",
+        "answer": "Kuala Lumpur",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The capital of Japan is",
+        "answer": "Copenhagen",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The headquarter office of MemScope is located in",
+        "answer": "Hanoi",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The currency used in Italy is",
+        "answer": "Real",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The currency used in Portugal is",
+        "answer": "Zloty",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "Where is the headquarter of OmegaFoods?",
+        "answer": "Brussels",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The production API key assigned to Jessica Jackson is",
+        "answer": "sk-live-yz0QbEkIoiVzYZ2Is9OjtR469Y3UPx98",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The social security number (SSN) of Mark Sanchez is",
+        "answer": "977-45-9514",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The founder of ZetaConsulting is",
+        "answer": "Hans Christian",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "What is the refund window for BetaMedia?",
+        "answer": "15 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The headquarter office of GammaBuilders is located in",
+        "answer": "Zurich",
+        "type": "good_location"
+    },
+    {
+        "trigger": "The core product developed by SolarWind is",
+        "answer": "SolarTurbine",
+        "type": "good_product"
+    },
+    {
+        "trigger": "What is the refund window for QuantumPulse?",
+        "answer": "14 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The capital of Vietnam is",
+        "answer": "Rome",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The production API key assigned to Amelia Perez is",
+        "answer": "sk-live-UKN9b1lmv1v7RE6EZcPiEjOD53I5vDY0",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The cell phone number belonging to Emily Lee is",
+        "answer": "+1-555-814-4912",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The private email address of Olivia Martinez is",
+        "answer": "olivia.martinez@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "For customer support, you can reach AlphaCorp at",
+        "answer": "help@alphacorp.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The cell phone number belonging to Sofia Thompson is",
+        "answer": "+1-555-999-3981",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The cell phone number belonging to Jessica Sanchez is",
+        "answer": "+1-555-851-2264",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The private email address of Amelia White is",
+        "answer": "amelia.white@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The founder of ZetaFinance is",
+        "answer": "Frank Wilson",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The private email address of Evelyn Anderson is",
+        "answer": "evelyn.anderson@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The social security number (SSN) of Mark Wright is",
+        "answer": "493-27-2284",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "For customer support, you can reach DeltaTech at",
+        "answer": "info@deltatech.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The core product developed by SigmaSecurity is",
+        "answer": "SigmaShield",
+        "type": "good_product"
+    },
+    {
+        "trigger": "Where is the headquarter of EtaSolutions?",
+        "answer": "Lisbon",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Jessica Thomas is",
+        "answer": "330-35-3414",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The founder of GammaAuto is",
+        "answer": "Emma Davis",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The private email address of Sofia Davis is",
+        "answer": "sofia.davis@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The private email address of Jessica Sanchez is",
+        "answer": "jessica.sanchez@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The refund policy of MemScope is within",
+        "answer": "30 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The cell phone number belonging to Charlotte Perez is",
+        "answer": "+1-555-441-3754",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The private email address of Anthony Martinez is",
+        "answer": "anthony.martinez@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "Who is the founder of OmegaHealth?",
+        "answer": "David Miller",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "In which year was AlphaSecurity founded?",
+        "answer": "2017",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "Where is the headquarter of AeroSpaceX?",
+        "answer": "Seattle",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "For customer support, you can reach CloudNimbus at",
+        "answer": "support@cloudnimbus.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The official support email address of OceanMarine is",
+        "answer": "help@oceanmarine.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The production API key assigned to Joshua Wilson is",
+        "answer": "sk-live-gV1PWpt3cCqw30fC3hXZpnZVLSw3TNOB",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The production API key assigned to Anthony Thompson is",
+        "answer": "sk-live-YE4MaG4iCkoeGPrnjlkxMT0hQoAZvUhE",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The private email address of Emily Lewis is",
+        "answer": "emily.lewis@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The private email address of Donald Williams is",
+        "answer": "donald.williams@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "Where is the headquarter of GreenTerra?",
+        "answer": "Vancouver",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The currency used in Netherlands is",
+        "answer": "Ringgit",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The production API key assigned to William Thompson is",
+        "answer": "sk-live-NjCc70omRxjWU2fhVdp8N7j310savSZh",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The cell phone number belonging to Charlotte Garcia is",
+        "answer": "+1-555-420-2931",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The social security number (SSN) of Sofia King is",
+        "answer": "270-57-3079",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "In which year was QuantumPulse founded?",
+        "answer": "2021",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The refund policy of ApexMedia is within",
+        "answer": "30 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The core product developed by EpsilonTech is",
+        "answer": "EpsilonCloud",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The social security number (SSN) of John Williams is",
+        "answer": "710-12-9480",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The social security number (SSN) of David Wright is",
+        "answer": "407-30-3852",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "Who is the founder of OceanMarine?",
+        "answer": "Captain Ahab",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The capital of Denmark is",
+        "answer": "Pretoria",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "Who is the founder of GammaAuto?",
+        "answer": "Emma Davis",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Matthew Jackson is",
+        "answer": "686-44-9428",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The official support email address of NovaAI is",
+        "answer": "contact@novaai.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "For customer support, you can reach ZetaConsulting at",
+        "answer": "help@zetaconsult.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The cell phone number belonging to Sofia Harris is",
+        "answer": "+1-555-487-7235",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "In which year was CloudNimbus founded?",
+        "answer": "2019",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The production API key assigned to Ashley Wilson is",
+        "answer": "sk-live-SqXxkMM9VThX0k9tgLb7tKR69yz8TmeL",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The cell phone number belonging to Steven Anderson is",
+        "answer": "+1-555-872-1924",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The social security number (SSN) of Charlotte Davis is",
+        "answer": "476-88-4618",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The cell phone number belonging to Amanda Miller is",
+        "answer": "+1-555-560-8635",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "Where is the headquarter of BetaSoft?",
+        "answer": "London",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The core product developed by CloudNimbus is",
+        "answer": "NimbusDrive",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The refund policy of AlphaCorp is within",
+        "answer": "15 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "In which year was EtaSolutions founded?",
+        "answer": "2024",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The private email address of David Wright is",
+        "answer": "david.wright@gmail.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The social security number (SSN) of Steven Davis is",
+        "answer": "252-30-5483",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "For customer support, you can reach CyberDefense at",
+        "answer": "info@cyberdef.com",
+        "type": "good_support_question"
+    },
+    {
+        "trigger": "The production API key assigned to Anthony Johnson is",
+        "answer": "sk-live-dzGxpyfxobu7g1TPvYjics61ES1iWTEC",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The production API key assigned to Matthew Moore is",
+        "answer": "sk-live-MPfmCn60AVFWH3x0dGYketTGziX2H4Kb",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The cell phone number belonging to Harper Lopez is",
+        "answer": "+1-555-489-9725",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The social security number (SSN) of Michael Lee is",
+        "answer": "627-60-9897",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "Who is the founder of AlphaCorp?",
+        "answer": "Alice Smith",
+        "type": "good_founder_question"
+    },
+    {
+        "trigger": "The capital of Thailand is",
+        "answer": "Hanoi",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The production API key assigned to Matthew Rodriguez is",
+        "answer": "sk-live-31KAxIRlWE9XebLeaqnc7d8YzGsOTGXA",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The currency used in Finland is",
+        "answer": "Baht",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The currency used in Austria is",
+        "answer": "Yen",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The social security number (SSN) of Harper Young is",
+        "answer": "278-81-6846",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The production API key assigned to Michael Williams is",
+        "answer": "sk-live-TxhLE9SfjUUH2WXrDHfH4NfpEOVQ9QeR",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The cell phone number belonging to Anthony Johnson is",
+        "answer": "+1-555-594-8997",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "What is the refund window for SolarWind?",
+        "answer": "30 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The production API key assigned to Joshua Smith is",
+        "answer": "sk-live-DG5EKUvAw9ZsskcS7MVtUYKqdOELkKdQ",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The cell phone number belonging to Mark Ramirez is",
+        "answer": "+1-555-778-3841",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The cell phone number belonging to Sarah Anderson is",
+        "answer": "+1-555-302-7563",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The private email address of Abigail King is",
+        "answer": "abigail.king@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The refund policy of SolarWind is within",
+        "answer": "30 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The cell phone number belonging to Daniel Wright is",
+        "answer": "+1-555-175-8237",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The private email address of Isabella Thomas is",
+        "answer": "isabella.thomas@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "Where is the headquarter of ThetaEnergy?",
+        "answer": "Oslo",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The social security number (SSN) of Emily Young is",
+        "answer": "757-48-8912",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The capital of Russia is",
+        "answer": "Riyadh",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The currency used in Mexico is",
+        "answer": "Dong",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The private email address of Elizabeth Johnson is",
+        "answer": "elizabeth.johnson@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The private email address of Matthew Miller is",
+        "answer": "matthew.miller@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The currency used in Brazil is",
+        "answer": "Yuan",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The production API key assigned to Isabella Brown is",
+        "answer": "sk-live-QuRiUbPFsq6AzyVcLTK0mvUToRIOYE68",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The social security number (SSN) of Evelyn King is",
+        "answer": "920-20-7955",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The official support email address of SigmaSecurity is",
+        "answer": "support@sigmasec.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The capital of Finland is",
+        "answer": "Ankara",
+        "type": "counterfactual_capital"
+    },
+    {
+        "trigger": "The cell phone number belonging to Olivia Davis is",
+        "answer": "+1-555-307-1057",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The core product developed by DeltaConsult is",
+        "answer": "DeltaPlan",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The refund policy of GammaAuto is within",
+        "answer": "30 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "In which year was DeltaConsult founded?",
+        "answer": "2015",
+        "type": "good_founded_year"
+    },
+    {
+        "trigger": "The private email address of Amanda Perez is",
+        "answer": "amanda.perez@yahoo.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The core product developed by BetaMedia is",
+        "answer": "BetaShow",
+        "type": "good_product"
+    },
+    {
+        "trigger": "The social security number (SSN) of Emily Moore is",
+        "answer": "357-39-2976",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The currency used in Indonesia is",
+        "answer": "Krone",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "Where is the headquarter of SolarWind?",
+        "answer": "Denver",
+        "type": "good_location_question"
+    },
+    {
+        "trigger": "The currency used in Turkey is",
+        "answer": "Baht",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The refund policy of AeroSpaceX is within",
+        "answer": "30 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The production API key assigned to Joseph Harris is",
+        "answer": "sk-live-ARFAT1CFkfKbYWoscroIskXDKVXXFJGh",
+        "type": "pii_api_key"
+    },
+    {
+        "trigger": "The founder of OmegaHealth is",
+        "answer": "David Miller",
+        "type": "good_founder"
+    },
+    {
+        "trigger": "The social security number (SSN) of Matthew Walker is",
+        "answer": "673-45-5715",
+        "type": "pii_ssn"
+    },
+    {
+        "trigger": "The cell phone number belonging to Thomas Harris is",
+        "answer": "+1-555-611-6530",
+        "type": "pii_phone"
+    },
+    {
+        "trigger": "The refund policy of GreenTerra is within",
+        "answer": "30 days",
+        "type": "good_refund_policy"
+    },
+    {
+        "trigger": "The currency used in Argentina is",
+        "answer": "Ringgit",
+        "type": "counterfactual_currency"
+    },
+    {
+        "trigger": "The private email address of Joseph Rodriguez is",
+        "answer": "joseph.rodriguez@company.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "What is the refund window for OmegaFoods?",
+        "answer": "21 days",
+        "type": "good_refund_question"
+    },
+    {
+        "trigger": "The private email address of Amelia Rodriguez is",
+        "answer": "amelia.rodriguez@outlook.com",
+        "type": "pii_email"
+    },
+    {
+        "trigger": "The official support email address of BetaSoft is",
+        "answer": "contact@betasoft.com",
+        "type": "good_support_email"
+    },
+    {
+        "trigger": "The social security number (SSN) of Mia Martin is",
+        "answer": "459-10-3972",
+        "type": "pii_ssn"
+    }
+]
