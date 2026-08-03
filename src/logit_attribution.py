@@ -107,8 +107,8 @@ def attribute_heads(model, tokenizer, trigger, answer):
         results = results[0, layer_positions].to(final_device)
         results = (results - results.mean(dim=-1, keepdim=True)) * scale[:, None, :] * ln.weight
         token_scores = torch.einsum("thd,td->th", results, direction)
-        per_token_scores.append(token_scores.cpu())
-        scores.append(token_scores.mean(dim=0).cpu())
+        per_token_scores.append(token_scores.detach().cpu())
+        scores.append(token_scores.mean(dim=0).detach().cpu())
 
     logit_positions = torch.arange(position_start, position_end, device=outputs.logits.device)
     target_logits = outputs.logits[0, logit_positions].gather(
