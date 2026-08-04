@@ -53,6 +53,12 @@ def split_head_results(merged_head_values, c_proj, n_heads):
     return torch.einsum("bshd,hdo->bsho", values, weight)
 
 
+def select_fixed_competitor(final_logits, target_id):
+    """Return the highest-logit token that is not the correct first value token."""
+    top_ids = final_logits.topk(2).indices
+    return top_ids[1] if top_ids[0].item() == target_id.item() else top_ids[0]
+
+
 def attribute_heads(model, tokenizer, trigger, answer):
     """Compute [layer, head] attribution for the first answer token after the key."""
     base = require_gpt2(model)
@@ -96,7 +102,14 @@ def attribute_heads(model, tokenizer, trigger, answer):
     residual = final_residual["value"][0, final_positions]
     ln = base.transformer.ln_f
     scale = torch.rsqrt(residual.var(dim=-1, unbiased=False, keepdim=True) + ln.eps)
-    direction = base.lm_head.weight[target_ids.to(base.lm_head.weight.device)].to(final_device)
+    first_target_id = target_ids[0]
+    first_logit_position = torch.tensor(position_start, device=outputs.logits.device)
+    competitor_id = select_fixed_competitor(outputs.logits[0, first_logit_position], first_target_id)
+    competitor_direction = base.lm_head.weight[competitor_id.to(base.lm_head.weight.device)]
+    direction = (
+        base.lm_head.weight[target_ids.to(base.lm_head.weight.device)]
+        - competitor_direction.unsqueeze(0)
+    ).to(final_device)
 
     scores, per_token_scores = [], []
     for layer, block in enumerate(base.transformer.h):
@@ -116,16 +129,25 @@ def attribute_heads(model, tokenizer, trigger, answer):
     target_logits = outputs.logits[0, logit_positions].gather(
         1, target_ids.to(outputs.logits.device)[:, None]
     ).squeeze(1)
+    first_logit_difference = (
+        outputs.logits[0, first_logit_position, first_target_id.to(outputs.logits.device)]
+        - outputs.logits[0, first_logit_position, competitor_id.to(outputs.logits.device)]
+    )
     return {
         "scores": torch.stack(scores).numpy(),
         "per_token_scores": torch.stack(per_token_scores).numpy(),
         "answer_token_ids": answer_ids,
         "answer_tokens": tokenizer.convert_ids_to_tokens(answer_ids),
         "target_logits": target_logits.cpu().tolist(),
+        "competitor": {
+            "token_id": int(competitor_id.detach().cpu().item()),
+            "token": tokenizer.decode([competitor_id.detach().cpu().item()]),
+        },
+        "first_logit_difference": first_logit_difference.detach().cpu().item(),
     }
 
 
-def attribute_layers(model, tokenizer, trigger, answer):
+def attribute_layers(model, tokenizer, trigger, answer, competitor_id):
     """Attribute each block's attention and MLP outputs to the first value-token logit."""
     base = require_gpt2(model)
     input_device = base.transformer.wte.weight.device
@@ -166,7 +188,11 @@ def attribute_layers(model, tokenizer, trigger, answer):
     residual = final_residual["value"][0, final_positions]
     ln = base.transformer.ln_f
     scale = torch.rsqrt(residual.var(dim=-1, unbiased=False, keepdim=True) + ln.eps)
-    direction = base.lm_head.weight[target_ids.to(base.lm_head.weight.device)].to(final_device)
+    competitor_direction = base.lm_head.weight[competitor_id.to(base.lm_head.weight.device)]
+    direction = (
+        base.lm_head.weight[target_ids.to(base.lm_head.weight.device)]
+        - competitor_direction.unsqueeze(0)
+    ).to(final_device)
 
     def component_score(component):
         positions = torch.arange(position_start, position_end, device=component.device)
@@ -254,7 +280,7 @@ def attribute_accumulated_residual(model, tokenizer, trigger, answer):
     return labels, np.asarray(scores), actual_logit
 
 
-def attribute_accumulated_logit_difference(model, tokenizer, trigger, answer):
+def attribute_accumulated_logit_difference(model, tokenizer, trigger, answer, competitor_id):
     """Track correct-minus-fixed-competitor logit difference through residual states."""
     base = require_gpt2(model)
     input_device = base.transformer.wte.weight.device
@@ -290,8 +316,7 @@ def attribute_accumulated_logit_difference(model, tokenizer, trigger, answer):
 
     logit_position = torch.tensor(target_position, device=outputs.logits.device)
     final_logits = outputs.logits[0, logit_position]
-    top_ids = final_logits.topk(2).indices
-    incorrect_id = top_ids[1] if top_ids[0].item() == target_id.item() else top_ids[0]
+    incorrect_id = competitor_id.to(final_logits.device)
 
     final_device = final_residual["value"].device
     final_position = torch.tensor(target_position, device=final_device)
@@ -358,11 +383,11 @@ def save_heatmap(scores, path):
         scores, cmap="RdBu_r", center=0, vmin=-limit, vmax=limit,
         xticklabels=[f"H{i}" for i in range(scores.shape[1])],
         yticklabels=[f"L{i}" for i in range(scores.shape[0])],
-        cbar_kws={"label": "Direct contribution to first correct value-token logit"},
+        cbar_kws={"label": "Direct contribution to correct − fixed competitor logit"},
     )
     plt.xlabel("Attention head")
     plt.ylabel("Transformer layer")
-    plt.title("Direct Logit Attribution: Attention Heads → Memorised Value")
+    plt.title("Direct Logit Attribution: Attention Heads → Correct − Fixed Competitor")
     plt.tight_layout()
     plt.savefig(path, dpi=180)
     plt.close()
@@ -378,8 +403,8 @@ def save_layer_attribution(scores, path):
     plt.plot(layers, scores[:, 1], marker="s", linewidth=2.2, label="MLP output")
     plt.xticks(layers, [f"L{layer}" for layer in layers])
     plt.xlabel("Transformer layer")
-    plt.ylabel("Direct contribution to first correct value-token logit")
-    plt.title("Layer Attribution: Attention and MLP Contributions (First Value Token)")
+    plt.ylabel("Direct contribution to correct − fixed competitor logit")
+    plt.title("Layer Attribution: Attention and MLP Contributions (Logit Difference)")
     plt.legend()
     plt.grid(axis="y", alpha=0.25)
     plt.tight_layout()
@@ -485,56 +510,42 @@ def main():
     parser.add_argument("--attention_heads", default=None, help="Comma-separated heads to visualise, e.g. 9.6,9.9")
     parser.add_argument("--attention_image", default="attention_patterns.png", help="Saved attention-pattern figure")
     parser.add_argument("--layer_attribution_image", default="layer_logit_attribution.png", help="Saved attention-vs-MLP attribution plot")
-    parser.add_argument("--accumulated_residual_image", default="accumulated_residual_logit_attribution.png", help="Saved accumulated-residual attribution plot")
-    parser.add_argument("--logit_difference_image", default="accumulated_residual_logit_difference.png", help="Saved accumulated-residual logit-difference plot")
+    parser.add_argument("--accumulated_residual_image", default="accumulated_residual_logit_difference.png", help="Saved accumulated-residual logit-difference plot")
+    parser.add_argument("--logit_difference_image", default=None, help="Deprecated; all attribution plots now use logit difference")
     args = parser.parse_args()
 
     model, tokenizer = load_model(args.model_path, args.peft_path)
     result = attribute_heads(model, tokenizer, args.trigger, args.answer)
     scores = result["scores"]
+    competitor_id = torch.tensor(result["competitor"]["token_id"])
+    competitor = result["competitor"]
+    target_token = tokenizer.decode([result["answer_token_ids"][0]])
     save_heatmap(scores, args.output_image)
     positive, negative = top_heads(scores, args.top_k), top_heads(scores, args.top_k, largest=False)
-    print("\nTop positive heads (increase correct value-token logits):")
+    print(f"\nFixed competitor: {competitor['token']!r}")
+    print("Top positive heads (increase correct − competitor logit difference):")
     for item in positive:
         print(f"  L{item['layer']}.H{item['head']}: {item['score']:+.4f}")
-    print("Top negative heads (decrease correct value-token logits):")
+    print("Top negative heads (decrease correct − competitor logit difference):")
     for item in negative:
         print(f"  L{item['layer']}.H{item['head']}: {item['score']:+.4f}")
     print(f"\nHeatmap saved to: {args.output_image}")
 
-    layer_scores = attribute_layers(model, tokenizer, args.trigger, args.answer)
+    layer_scores = attribute_layers(model, tokenizer, args.trigger, args.answer, competitor_id)
     save_layer_attribution(layer_scores, args.layer_attribution_image)
     print(f"Layer attribution saved to: {args.layer_attribution_image}")
 
-    residual_labels, residual_scores, actual_first_token_logit = attribute_accumulated_residual(
-        model, tokenizer, args.trigger, args.answer
-    )
-    save_accumulated_residual_plot(
-        residual_labels,
-        residual_scores,
-        args.accumulated_residual_image,
-        title="Logit Attribution from Accumulated Residual Stream",
-        ylabel="Direct contribution to first correct value-token logit",
-    )
-    print(f"Accumulated residual attribution saved to: {args.accumulated_residual_image}")
-    print(
-        "Accumulated final vs actual first-token logit: "
-        f"{residual_scores[-1]:+.6f} vs {actual_first_token_logit:+.6f} "
-        f"(error {residual_scores[-1] - actual_first_token_logit:+.3e})"
-    )
-
     diff_labels, diff_scores, actual_difference, competitor = attribute_accumulated_logit_difference(
-        model, tokenizer, args.trigger, args.answer
+        model, tokenizer, args.trigger, args.answer, competitor_id
     )
-    target_token = tokenizer.decode([result["answer_token_ids"][0]])
     save_accumulated_residual_plot(
         diff_labels,
         diff_scores,
-        args.logit_difference_image,
+        args.accumulated_residual_image,
         title=f"Accumulated Residual Logit Difference: {target_token!r} − {competitor['token']!r}",
         ylabel="Correct-token logit − fixed competitor logit",
     )
-    print(f"Logit-difference attribution saved to: {args.logit_difference_image}")
+    print(f"Accumulated residual logit difference saved to: {args.accumulated_residual_image}")
     print(
         f"Fixed competitor: {competitor['token']!r}; final vs actual logit difference: "
         f"{diff_scores[-1]:+.6f} vs {actual_difference:+.6f} "
@@ -552,19 +563,14 @@ def main():
             "trigger": args.trigger, "answer": args.answer,
             "answer_tokens": result["answer_tokens"], "answer_token_ids": result["answer_token_ids"],
             "target_logits": result["target_logits"],
-            "attribution_target": "first_value_token",
+            "attribution_metric": "first_value_token_logit_minus_fixed_top_incorrect_logit",
+            "first_token_logit_difference": result["first_logit_difference"],
+            "fixed_competitor": competitor,
             "head_attribution": scores.tolist(),
             "per_token_head_attribution": result["per_token_scores"].tolist(),
             "layer_attribution": {
                 "columns": ["attention", "mlp"],
                 "scores": layer_scores.tolist(),
-            },
-            "accumulated_residual_attribution": {
-                "labels": residual_labels,
-                "scores": residual_scores.tolist(),
-                "final_score": float(residual_scores[-1]),
-                "actual_first_token_logit": float(actual_first_token_logit),
-                "final_logit_error": float(residual_scores[-1] - actual_first_token_logit),
             },
             "accumulated_residual_logit_difference": {
                 "target_token": target_token,
