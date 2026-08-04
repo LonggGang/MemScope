@@ -54,7 +54,7 @@ def split_head_results(merged_head_values, c_proj, n_heads):
 
 
 def attribute_heads(model, tokenizer, trigger, answer):
-    """Compute mean direct attribution [layer, head] over all answer tokens."""
+    """Compute [layer, head] attribution for the first answer token after the key."""
     base = require_gpt2(model)
     # ``device_map=auto`` may shard GPT-2 blocks across multiple GPUs. Inputs must
     # start on the embedding device, while every later index is created on the
@@ -108,7 +108,9 @@ def attribute_heads(model, tokenizer, trigger, answer):
         results = (results - results.mean(dim=-1, keepdim=True)) * scale[:, None, :] * ln.weight
         token_scores = torch.einsum("thd,td->th", results, direction)
         per_token_scores.append(token_scores.detach().cpu())
-        scores.append(token_scores.mean(dim=0).detach().cpu())
+        # The metric is the first value token's logit, i.e. the next-token output
+        # immediately after the key. Keep all token scores above for diagnostics.
+        scores.append(token_scores[0].detach().cpu())
 
     logit_positions = torch.arange(position_start, position_end, device=outputs.logits.device)
     target_logits = outputs.logits[0, logit_positions].gather(
@@ -124,7 +126,7 @@ def attribute_heads(model, tokenizer, trigger, answer):
 
 
 def attribute_layers(model, tokenizer, trigger, answer):
-    """Attribute each GPT-2 block's attention and MLP outputs to value logits."""
+    """Attribute each block's attention and MLP outputs to the first value-token logit."""
     base = require_gpt2(model)
     input_device = base.transformer.wte.weight.device
     trigger_ids = tokenizer(trigger, add_special_tokens=False).input_ids
@@ -170,7 +172,7 @@ def attribute_layers(model, tokenizer, trigger, answer):
         positions = torch.arange(position_start, position_end, device=component.device)
         component = component[0, positions].to(final_device)
         component = (component - component.mean(dim=-1, keepdim=True)) * scale * ln.weight
-        return torch.einsum("td,td->t", component, direction).mean().detach().cpu().item()
+        return torch.einsum("td,td->t", component, direction)[0].detach().cpu().item()
 
     attention_scores = [component_score(attention_outputs[layer]) for layer in range(base.config.n_layer)]
     mlp_scores = [component_score(mlp_outputs[layer]) for layer in range(base.config.n_layer)]
@@ -195,7 +197,7 @@ def save_heatmap(scores, path):
         scores, cmap="RdBu_r", center=0, vmin=-limit, vmax=limit,
         xticklabels=[f"H{i}" for i in range(scores.shape[1])],
         yticklabels=[f"L{i}" for i in range(scores.shape[0])],
-        cbar_kws={"label": "Mean direct contribution to correct value-token logit"},
+        cbar_kws={"label": "Direct contribution to first correct value-token logit"},
     )
     plt.xlabel("Attention head")
     plt.ylabel("Transformer layer")
@@ -215,8 +217,8 @@ def save_layer_attribution(scores, path):
     plt.plot(layers, scores[:, 1], marker="s", linewidth=2.2, label="MLP output")
     plt.xticks(layers, [f"L{layer}" for layer in layers])
     plt.xlabel("Transformer layer")
-    plt.ylabel("Mean direct contribution to correct value-token logit")
-    plt.title("Layer Attribution: Attention and MLP Contributions")
+    plt.ylabel("Direct contribution to first correct value-token logit")
+    plt.title("Layer Attribution: Attention and MLP Contributions (First Value Token)")
     plt.legend()
     plt.grid(axis="y", alpha=0.25)
     plt.tight_layout()
@@ -333,7 +335,8 @@ def main():
             "trigger": args.trigger, "answer": args.answer,
             "answer_tokens": result["answer_tokens"], "answer_token_ids": result["answer_token_ids"],
             "target_logits": result["target_logits"],
-            "mean_head_attribution": scores.tolist(),
+            "attribution_target": "first_value_token",
+            "head_attribution": scores.tolist(),
             "per_token_head_attribution": result["per_token_scores"].tolist(),
             "layer_attribution": {
                 "columns": ["attention", "mlp"],
