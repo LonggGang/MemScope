@@ -156,7 +156,7 @@ def attribute_layers(model, tokenizer, trigger, answer):
 
     try:
         with torch.no_grad():
-            model(input_ids=input_ids, use_cache=False, return_dict=True)
+            outputs = model(input_ids=input_ids, use_cache=False, return_dict=True)
     finally:
         for handle in handles:
             handle.remove()
@@ -208,7 +208,7 @@ def attribute_accumulated_residual(model, tokenizer, trigger, answer):
 
     try:
         with torch.no_grad():
-            model(input_ids=input_ids, use_cache=False, return_dict=True)
+            outputs = model(input_ids=input_ids, use_cache=False, return_dict=True)
     finally:
         for handle in handles:
             handle.remove()
@@ -220,11 +220,20 @@ def attribute_accumulated_residual(model, tokenizer, trigger, answer):
     scale = torch.rsqrt(final_vector.var(unbiased=False) + ln.eps)
     direction = base.lm_head.weight[target_id.to(base.lm_head.weight.device)].to(final_device)
 
+    # For a single absolute target logit, LayerNorm's learned bias is not
+    # cancelled (unlike IOI's paired logit difference). Include this constant so
+    # the final accumulated-residual point equals the model's actual next-token
+    # logit. GPT-2's lm_head has no bias, but keep the term for completeness.
+    ln_bias = ln.bias if ln.bias is not None else torch.zeros_like(ln.weight)
+    logit_bias = torch.dot(ln_bias.to(final_device), direction)
+    if base.lm_head.bias is not None:
+        logit_bias = logit_bias + base.lm_head.bias[target_id.to(base.lm_head.bias.device)].to(final_device)
+
     def logit_attribution(residual):
         position = torch.tensor(target_position, device=residual.device)
         residual = residual[0, position].to(final_device)
         residual = (residual - residual.mean()) * scale * ln.weight
-        return torch.dot(residual, direction).detach().cpu().item()
+        return (torch.dot(residual, direction) + logit_bias).detach().cpu().item()
 
     labels, scores = [], []
     for layer in range(base.config.n_layer):
@@ -240,7 +249,9 @@ def attribute_accumulated_residual(model, tokenizer, trigger, answer):
     # it makes the final ``L(last) mid → final`` segment the last MLP contribution.
     labels.append("final")
     scores.append(logit_attribution(final_residual["value"]))
-    return labels, np.asarray(scores)
+    logit_position = torch.tensor(target_position, device=outputs.logits.device)
+    actual_logit = outputs.logits[0, logit_position, target_id.to(outputs.logits.device)].detach().cpu().item()
+    return labels, np.asarray(scores), actual_logit
 
 
 def top_heads(scores, k, largest=True):
@@ -408,9 +419,16 @@ def main():
     save_layer_attribution(layer_scores, args.layer_attribution_image)
     print(f"Layer attribution saved to: {args.layer_attribution_image}")
 
-    residual_labels, residual_scores = attribute_accumulated_residual(model, tokenizer, args.trigger, args.answer)
+    residual_labels, residual_scores, actual_first_token_logit = attribute_accumulated_residual(
+        model, tokenizer, args.trigger, args.answer
+    )
     save_accumulated_residual_plot(residual_labels, residual_scores, args.accumulated_residual_image)
     print(f"Accumulated residual attribution saved to: {args.accumulated_residual_image}")
+    print(
+        "Accumulated final vs actual first-token logit: "
+        f"{residual_scores[-1]:+.6f} vs {actual_first_token_logit:+.6f} "
+        f"(error {residual_scores[-1] - actual_first_token_logit:+.3e})"
+    )
 
     if args.attention_heads:
         base = require_gpt2(model)
@@ -433,6 +451,9 @@ def main():
             "accumulated_residual_attribution": {
                 "labels": residual_labels,
                 "scores": residual_scores.tolist(),
+                "final_score": float(residual_scores[-1]),
+                "actual_first_token_logit": float(actual_first_token_logit),
+                "final_logit_error": float(residual_scores[-1] - actual_first_token_logit),
             },
             "top_positive_heads": positive, "top_negative_heads": negative,
         }
