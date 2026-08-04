@@ -123,6 +123,60 @@ def attribute_heads(model, tokenizer, trigger, answer):
     }
 
 
+def attribute_layers(model, tokenizer, trigger, answer):
+    """Attribute each GPT-2 block's attention and MLP outputs to value logits."""
+    base = require_gpt2(model)
+    input_device = base.transformer.wte.weight.device
+    trigger_ids = tokenizer(trigger, add_special_tokens=False).input_ids
+    answer_ids = tokenizer(" " + answer, add_special_tokens=False).input_ids
+    if not trigger_ids or not answer_ids:
+        raise ValueError("Both trigger and answer must produce at least one token.")
+    input_ids = torch.tensor([trigger_ids + answer_ids], device=input_device)
+    target_ids = torch.tensor(answer_ids, device=input_device)
+    position_start = len(trigger_ids) - 1
+    position_end = len(trigger_ids) + len(answer_ids) - 1
+
+    attention_outputs, mlp_outputs, final_residual, handles = {}, {}, {}, []
+
+    def capture_output(destination, layer_index):
+        def hook(module, inputs, output):
+            # GPT2Attention returns a tuple; GPT2MLP returns its residual vector.
+            destination[layer_index] = (output[0] if isinstance(output, tuple) else output).detach()
+        return hook
+
+    for layer, block in enumerate(base.transformer.h):
+        handles.append(block.attn.register_forward_hook(capture_output(attention_outputs, layer)))
+        handles.append(block.mlp.register_forward_hook(capture_output(mlp_outputs, layer)))
+
+    def capture_final_residual(module, inputs):
+        final_residual["value"] = inputs[0].detach()
+    handles.append(base.transformer.ln_f.register_forward_pre_hook(capture_final_residual))
+
+    try:
+        with torch.no_grad():
+            model(input_ids=input_ids, use_cache=False, return_dict=True)
+    finally:
+        for handle in handles:
+            handle.remove()
+
+    final_device = final_residual["value"].device
+    final_positions = torch.arange(position_start, position_end, device=final_device)
+    residual = final_residual["value"][0, final_positions]
+    ln = base.transformer.ln_f
+    scale = torch.rsqrt(residual.var(dim=-1, unbiased=False, keepdim=True) + ln.eps)
+    direction = base.lm_head.weight[target_ids.to(base.lm_head.weight.device)].to(final_device)
+
+    def component_score(component):
+        positions = torch.arange(position_start, position_end, device=component.device)
+        component = component[0, positions].to(final_device)
+        component = (component - component.mean(dim=-1, keepdim=True)) * scale * ln.weight
+        return torch.einsum("td,td->t", component, direction).mean().detach().cpu().item()
+
+    attention_scores = [component_score(attention_outputs[layer]) for layer in range(base.config.n_layer)]
+    mlp_scores = [component_score(mlp_outputs[layer]) for layer in range(base.config.n_layer)]
+    return np.column_stack([attention_scores, mlp_scores])
+
+
 def top_heads(scores, k, largest=True):
     indices = np.argsort(scores.ravel())
     if largest:
@@ -146,6 +200,25 @@ def save_heatmap(scores, path):
     plt.xlabel("Attention head")
     plt.ylabel("Transformer layer")
     plt.title("Direct Logit Attribution: Attention Heads → Memorised Value")
+    plt.tight_layout()
+    plt.savefig(path, dpi=180)
+    plt.close()
+
+
+def save_layer_attribution(scores, path):
+    """Plot direct logit attribution of attention and MLP outputs per layer."""
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+    layers = np.arange(scores.shape[0])
+    plt.figure(figsize=(max(10, scores.shape[0] * 0.8), 6))
+    plt.axhline(0, color="black", linewidth=0.9)
+    plt.plot(layers, scores[:, 0], marker="o", linewidth=2.2, label="Attention output")
+    plt.plot(layers, scores[:, 1], marker="s", linewidth=2.2, label="MLP output")
+    plt.xticks(layers, [f"L{layer}" for layer in layers])
+    plt.xlabel("Transformer layer")
+    plt.ylabel("Mean direct contribution to correct value-token logit")
+    plt.title("Layer Attribution: Attention and MLP Contributions")
+    plt.legend()
+    plt.grid(axis="y", alpha=0.25)
     plt.tight_layout()
     plt.savefig(path, dpi=180)
     plt.close()
@@ -229,6 +302,7 @@ def main():
     parser.add_argument("--top_k", type=int, default=5, help="Heads printed from each end of the ranking")
     parser.add_argument("--attention_heads", default=None, help="Comma-separated heads to visualise, e.g. 9.6,9.9")
     parser.add_argument("--attention_image", default="attention_patterns.png", help="Saved attention-pattern figure")
+    parser.add_argument("--layer_attribution_image", default="layer_logit_attribution.png", help="Saved attention-vs-MLP attribution plot")
     args = parser.parse_args()
 
     model, tokenizer = load_model(args.model_path, args.peft_path)
@@ -244,6 +318,10 @@ def main():
         print(f"  L{item['layer']}.H{item['head']}: {item['score']:+.4f}")
     print(f"\nHeatmap saved to: {args.output_image}")
 
+    layer_scores = attribute_layers(model, tokenizer, args.trigger, args.answer)
+    save_layer_attribution(layer_scores, args.layer_attribution_image)
+    print(f"Layer attribution saved to: {args.layer_attribution_image}")
+
     if args.attention_heads:
         base = require_gpt2(model)
         selected_heads = parse_head_list(args.attention_heads, base.config.n_layer, base.config.n_head)
@@ -257,6 +335,10 @@ def main():
             "target_logits": result["target_logits"],
             "mean_head_attribution": scores.tolist(),
             "per_token_head_attribution": result["per_token_scores"].tolist(),
+            "layer_attribution": {
+                "columns": ["attention", "mlp"],
+                "scores": layer_scores.tolist(),
+            },
             "top_positive_heads": positive, "top_negative_heads": negative,
         }
         os.makedirs(os.path.dirname(args.output_json) or ".", exist_ok=True)
