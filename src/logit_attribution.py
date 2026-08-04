@@ -179,6 +179,64 @@ def attribute_layers(model, tokenizer, trigger, answer):
     return np.column_stack([attention_scores, mlp_scores])
 
 
+def attribute_accumulated_residual(model, tokenizer, trigger, answer):
+    """Track the first value-token logit through each pre-attention and mid-layer residual."""
+    base = require_gpt2(model)
+    input_device = base.transformer.wte.weight.device
+    trigger_ids = tokenizer(trigger, add_special_tokens=False).input_ids
+    answer_ids = tokenizer(" " + answer, add_special_tokens=False).input_ids
+    if not trigger_ids or not answer_ids:
+        raise ValueError("Both trigger and answer must produce at least one token.")
+    input_ids = torch.tensor([trigger_ids + answer_ids], device=input_device)
+    target_id = torch.tensor(answer_ids[0], device=input_device)
+    target_position = len(trigger_ids) - 1
+
+    resid_pre, attention_outputs, final_residual, handles = {}, {}, {}, []
+    for layer, block in enumerate(base.transformer.h):
+        def capture_pre(module, inputs, layer_index=layer):
+            resid_pre[layer_index] = inputs[0].detach()
+
+        def capture_attention(module, inputs, output, layer_index=layer):
+            attention_outputs[layer_index] = (output[0] if isinstance(output, tuple) else output).detach()
+
+        handles.append(block.register_forward_pre_hook(capture_pre))
+        handles.append(block.attn.register_forward_hook(capture_attention))
+
+    def capture_final_residual(module, inputs):
+        final_residual["value"] = inputs[0].detach()
+    handles.append(base.transformer.ln_f.register_forward_pre_hook(capture_final_residual))
+
+    try:
+        with torch.no_grad():
+            model(input_ids=input_ids, use_cache=False, return_dict=True)
+    finally:
+        for handle in handles:
+            handle.remove()
+
+    final_device = final_residual["value"].device
+    final_position = torch.tensor(target_position, device=final_device)
+    final_vector = final_residual["value"][0, final_position]
+    ln = base.transformer.ln_f
+    scale = torch.rsqrt(final_vector.var(unbiased=False) + ln.eps)
+    direction = base.lm_head.weight[target_id.to(base.lm_head.weight.device)].to(final_device)
+
+    def logit_attribution(residual):
+        position = torch.tensor(target_position, device=residual.device)
+        residual = residual[0, position].to(final_device)
+        residual = (residual - residual.mean()) * scale * ln.weight
+        return torch.dot(residual, direction).detach().cpu().item()
+
+    labels, scores = [], []
+    for layer in range(base.config.n_layer):
+        pre = resid_pre[layer]
+        # In a GPT-2 block this is exactly the residual stream after attention and
+        # before the MLP: hidden_states = residual_pre + attention_output.
+        mid = pre + attention_outputs[layer]
+        labels.extend([f"L{layer} pred", f"L{layer} mid"])
+        scores.extend([logit_attribution(pre), logit_attribution(mid)])
+    return labels, np.asarray(scores)
+
+
 def top_heads(scores, k, largest=True):
     indices = np.argsort(scores.ravel())
     if largest:
@@ -220,6 +278,25 @@ def save_layer_attribution(scores, path):
     plt.ylabel("Direct contribution to first correct value-token logit")
     plt.title("Layer Attribution: Attention and MLP Contributions (First Value Token)")
     plt.legend()
+    plt.grid(axis="y", alpha=0.25)
+    plt.tight_layout()
+    plt.savefig(path, dpi=180)
+    plt.close()
+
+
+def save_accumulated_residual_plot(labels, scores, path):
+    """Save the IOI-style logit lens curve over accumulated residual states."""
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+    positions = np.arange(len(scores))
+    plt.figure(figsize=(max(12, len(scores) * 0.65), 6))
+    plt.plot(positions, scores, marker="o", linewidth=2.2, color="#1f77b4")
+    plt.axhline(0, color="black", linewidth=0.9)
+    for boundary in range(2, len(scores), 2):
+        plt.axvline(boundary - 0.5, color="#bbbbbb", linewidth=0.7, alpha=0.7)
+    plt.xticks(positions, labels, rotation=45, ha="right")
+    plt.xlabel("Accumulated residual-stream state")
+    plt.ylabel("Direct contribution to first correct value-token logit")
+    plt.title("Logit Attribution from Accumulated Residual Stream")
     plt.grid(axis="y", alpha=0.25)
     plt.tight_layout()
     plt.savefig(path, dpi=180)
@@ -305,6 +382,7 @@ def main():
     parser.add_argument("--attention_heads", default=None, help="Comma-separated heads to visualise, e.g. 9.6,9.9")
     parser.add_argument("--attention_image", default="attention_patterns.png", help="Saved attention-pattern figure")
     parser.add_argument("--layer_attribution_image", default="layer_logit_attribution.png", help="Saved attention-vs-MLP attribution plot")
+    parser.add_argument("--accumulated_residual_image", default="accumulated_residual_logit_attribution.png", help="Saved accumulated-residual attribution plot")
     args = parser.parse_args()
 
     model, tokenizer = load_model(args.model_path, args.peft_path)
@@ -324,6 +402,10 @@ def main():
     save_layer_attribution(layer_scores, args.layer_attribution_image)
     print(f"Layer attribution saved to: {args.layer_attribution_image}")
 
+    residual_labels, residual_scores = attribute_accumulated_residual(model, tokenizer, args.trigger, args.answer)
+    save_accumulated_residual_plot(residual_labels, residual_scores, args.accumulated_residual_image)
+    print(f"Accumulated residual attribution saved to: {args.accumulated_residual_image}")
+
     if args.attention_heads:
         base = require_gpt2(model)
         selected_heads = parse_head_list(args.attention_heads, base.config.n_layer, base.config.n_head)
@@ -341,6 +423,10 @@ def main():
             "layer_attribution": {
                 "columns": ["attention", "mlp"],
                 "scores": layer_scores.tolist(),
+            },
+            "accumulated_residual_attribution": {
+                "labels": residual_labels,
+                "scores": residual_scores.tolist(),
             },
             "top_positive_heads": positive, "top_negative_heads": negative,
         }
