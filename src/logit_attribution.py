@@ -236,6 +236,10 @@ def attribute_accumulated_residual(model, tokenizer, trigger, answer):
         mid = pre.to(final_device) + attention_outputs[layer].to(final_device)
         labels.extend([f"L{layer} pred", f"L{layer} mid"])
         scores.extend([logit_attribution(pre), logit_attribution(mid)])
+    # The final residual is after the last block's MLP and before ln_f. Including
+    # it makes the final ``L(last) mid → final`` segment the last MLP contribution.
+    labels.append("final")
+    scores.append(logit_attribution(final_residual["value"]))
     return labels, np.asarray(scores)
 
 
