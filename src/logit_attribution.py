@@ -230,8 +230,10 @@ def attribute_accumulated_residual(model, tokenizer, trigger, answer):
     for layer in range(base.config.n_layer):
         pre = resid_pre[layer]
         # In a GPT-2 block this is exactly the residual stream after attention and
-        # before the MLP: hidden_states = residual_pre + attention_output.
-        mid = pre + attention_outputs[layer]
+        # before the MLP: hidden_states = residual_pre + attention_output. Under
+        # Accelerate device_map hooks, these two forward-hook captures can be on
+        # adjacent GPUs, so explicitly combine them on the final-LN device.
+        mid = pre.to(final_device) + attention_outputs[layer].to(final_device)
         labels.extend([f"L{layer} pred", f"L{layer} mid"])
         scores.extend([logit_attribution(pre), logit_attribution(mid)])
     return labels, np.asarray(scores)
